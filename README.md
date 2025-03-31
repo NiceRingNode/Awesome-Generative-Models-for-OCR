@@ -44,7 +44,12 @@ GPT-4o can now [generate images natively](https://openai.com/index/introducing-4
 | Input Image                                                  | Prompt                         | Language | Output Image                                                 |
 | ------------------------------------------------------------ | ------------------------------ | -------- | ------------------------------------------------------------ |
 | <p align="center"><img src="./images/document/deshadowing-en-input.jpg" width=100%></p> | 请帮我去掉这张文档图片中的阴影 | EN       | <p align="center"><img src="./images/document/deshadowing-en-output.png" width=100%></p> |
-| <p align="center"><img src="./images/document/deshadowing-en-input2.jpg" width=100%></p> | Process this document image to eliminate shadow artifacts and produce a clean, evenly lit version. | EN       | <p align="center"><img src="./images/document/deshadowing-en-output2.png" width=100%></p> |
+| <p align="center"><img src="./images/document/deshadowing-en-input2.jpg" width=100%></p> | Process this document image to eliminate shadow artifacts and produce a clean, evenly lit version. | LA       | <p align="center"><img src="./images/document/deshadowing-en-output2.png" width=100%></p> |
+#### Document Deblur
+
+| Input Image                                                  | Prompt                                            | Language | Output Image                                                 |
+| ------------------------------------------------------------ | ------------------------------------------------- | -------- | ------------------------------------------------------------ |
+| <p align="center"><img src="./images/document/deblur-en-input.png" width=100%></p> | Deblur this document image to enhance text clarity. | EN       | <p align="center"><img src="./images/document/deblur-en-output.png" width=100%></p> |
 #### Appearance Enhancement
 
 | Input Image                                                  | Prompt                                            | Language | Output Image                                                 |

@@ -174,6 +174,6 @@ eeprzhang@mail.scut.edu.cn
 
 ## <div align="center">Acknowledgement<!-- omit in toc -->
 
-[Peirong Zhang🐲](https://github.com/NiceRingNode), [Yuyi Zhang🐷](https://github.com/ZZXF11), [Junle Liu🐮](https://github.com/wuhaer), [Haowei Xu🔥](https://github.com/shallweiwei), [Guitao Xu😿](https://github.com/guitaoxu).
+[Peirong Zhang🐲](https://github.com/NiceRingNode), [Haowei Xu🔥](https://github.com/shallweiwei), [Guitao Xu😿](https://github.com/guitaoxu).
 
 [DLVC-Lab, South China University of Technology](https://github.com/SCUT-DLVCLab)

@@ -116,9 +116,9 @@ GPT-4o can now [generate images natively](https://openai.com/index/introducing-4
 
 | Input Image                                                  | Prompt                                     | Language | Output Image                                                 |
 | ------------------------------------------------------------ | ------------------------------------------ | -------- | ------------------------------------------------------------ |
-| <p align="center"><img src="./images/handwritten/handwritten-text-removal-zh-input.jpg" width=100%></p> | 请擦除这张图片中所有的手写笔迹             | ZH       | <p align="center"><img src="./images/handwritten/handwritten-text-removal-zh-output.png" width=100%></p> |
+| <p align="center"><img src="./images/handwritten/paragraph-handwritten-text-removal-zh-input.jpg" width=100%></p> | 请擦除这张图片中所有的手写笔迹             | ZH       | <p align="center"><img src="./images/handwritten/paragraph-handwritten-text-removal-zh-output.png" width=100%></p> |
 | <p align="center"><img src="./images/handwritten/handwritten-text-removal-zh-input_2.png" width=100%></p> | 将"高考加油鸭"这句话擦除                   | ZH       | <p align="center"><img src="./images/handwritten/handwritten-text-removal-zh-output_2.png" width=100%></p> |
-| <p align="center"><img src="./images/handwritten/handwritten-text-removal-en-input.jpg" width=100%></p> | Remove all handwritten text in this image. | EN       | <p align="center"><img src="./images/handwritten/handwritten-text-removal-en-output.png" width=100%></p> |
+| <p align="center"><img src="./images/handwritten/paragraph-handwritten-text-removal-en-input.jpg" width=100%></p> | Remove all handwritten text in this image. | EN       | <p align="center"><img src="./images/handwritten/paragraph-handwritten-text-removal-en-output.png" width=100%></p> |
 
 ### Style Transfer
 

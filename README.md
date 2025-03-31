@@ -1,4 +1,4 @@
-# <div align="center">GPT-4o-Image-Generation-for-OCR🚀
+# <div align="center">GPT-4o Image Generation for OCR🚀
 
 <div align="center">
   <a href="http://dlvc-lab.net/lianwen/"> <img alt="SCUT DLVC Lab" src="https://img.shields.io/badge/SCUT-DLVC_Lab-A85882?logo=Academia&logoColor=hsl"></a>
@@ -181,4 +181,4 @@ eeprzhang@mail.scut.edu.cn
 
 [Peirong Zhang🐲](https://github.com/NiceRingNode), [Haowei Xu🔥](https://github.com/shallweiwei), [Guitao Xu😿](https://github.com/guitaoxu).
 
-[DLVC-Lab, South China University of Technology](https://github.com/SCUT-DLVCLab)
+Copyright 2025, Deep Learning and Vision Computing (DLVC) Lab, South China China University of Technology. http://www.dlvc-lab.net.

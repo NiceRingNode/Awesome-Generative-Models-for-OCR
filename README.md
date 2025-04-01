@@ -122,7 +122,7 @@ Welcome **issues, PR, and stars** for more comprehensive testing or join us to u
 
 | Input Image1                                                 | Input Image 2                                                | Prompt                                                       | Language | Output Image                                                 | Correctness & Quality                   |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ | --------------------------------------- |
-| <p align="center"><img src="./images/historical/style-transfer-zh-input1.png" width=100%></p> | <p align="center"><img src="./images/historical/style-transfer-zh-input2.jpg" width=100%></p> | 请将第二张古籍图片的风格迁移到第一张古籍上，包括背景颜色、字体样式、笔画粗细等等。 | EN       | <p align="center"><img src="./images/historical/style-transfer-zh-output.png" width=100%></p> | ❌<br/>Style and content totally failed. |
+| <p align="center"><img src="./images/historical/style-transfer-zh-input1.png" width=100%></p> | <p align="center"><img src="./images/historical/style-transfer-zh-input2.jpg" width=100%></p> | 请将第二张古籍图片的风格迁移到第一张古籍上，包括背景颜色、字体样式、笔画粗细等等。 | EN       | <p align="center"><img src="./images/historical/style-transfer-zh-output.png" width=100%></p> | ❌<br/>Style and content totally incorrect. |
 
 ### Super Resolution
 

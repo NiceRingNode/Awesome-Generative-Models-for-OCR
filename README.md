@@ -236,7 +236,7 @@ Welcome **issues, PR, and stars** for more comprehensive testing or join us to u
 | Prompt                                | Language | Output Image                                                 | Correctness & Quality         |
 | ------------------------------------- | -------- | ------------------------------------------------------------ | ----------------------------- |
 | Please generate an artistic font "A". | EN       | <p align="center"><img src="./images/artistic/character-t2i-generation-en-output.png" width=20%></p> | ✅<br/>Requirements fulfilled. |
-| 请生成一个艺术字，内容为“瀧”。        | ZH       | <p align="center"><img src="./images/artistic/character-t2i-generation-zh-output.png" width=20%></p> | ✅<br/>Requirements fulfilled. |
+| 请生成一个艺术字，内容为“瀧”。        | ZH       | <p align="center"><img src="./images/artistic/character-t2i-generation-zh-output.png" width=20%></p> | ❌<br/>Totally failed. Unable to handle complex Chinese text |
 
 ## <div align="center">Contact</div> <!-- omit in toc -->
 

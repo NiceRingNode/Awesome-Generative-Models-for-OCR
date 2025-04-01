@@ -6,7 +6,7 @@
 <p></p>
 </div>
 
-GPT-4o can now [generate images natively](https://openai.com/index/introducing-4o-image-generation/). This repository is about evaluating GPT-4o’s image generation capability on various **Optical Character Recognition (OCR)** tasks. The evaluation include **generating** multiple types of text images (handwritten notes, printed documents, poster, street signs, historical manuscript, etc.) and **editing** specific content of text images. Beyond simple benchmarking, we aim to understand the boundaries of GPT-4o as a general image generation model applied to the specialized field of OCR, identify remaining challenges, and explore how close we are to achieving AGI-level capabilities in this domain.
+GPT-4o can now [generate images natively](https://openai.com/index/introducing-4o-image-generation/). This repository is about evaluating GPT-4o’s image generation capability on various **Optical Character Recognition (OCR)** tasks. The evaluation include **generating** multiple types of text images (handwritten notes, printed documents, poster, street signs, historical manuscript, etc.) and **editing** specific content of text images. Beyond simple benchmarking, we aim to understand the boundaries of GPT-4o as a general image generation model applied to the specialized field of OCR, identify remaining challenges, and explore **how close we are to achieving AGI-level capabilities in this domain**.
 
 Welcome **issues, PR, and stars** for more comprehensive testing or join us to uncover the potential of GPT-4o for next-gen OCR applications! ✨
 

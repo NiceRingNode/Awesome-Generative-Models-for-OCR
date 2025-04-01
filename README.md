@@ -165,7 +165,7 @@ Welcome **issues, PR, and stars** for more comprehensive testing or join us to u
 
 | Input Image                                                  | Prompt                                                 | Language | Output Image                                                 | Correctness & Quality                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------ | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| <p align="center"><img src="./images/handwritten/page-text-editing-en-input.jpg" width=100%></p> | Erase text "Football, cricket, running" in this image. | EN       | <p align="center"><img src="./images/handwritten/page-text-editing-en-output.png" width=100%></p> | ❌<br/>Text not edited. Light, drawings, and background color change. |
+| <p align="center"><img src="./images/handwritten/page-text-editing-en-input.jpg" width=100%></p> | Erase text "Football, cricket, running" in this image. | EN       | <p align="center"><img src="./images/handwritten/page-text-editing-en-output.png" width=100%></p> | ❌<br/>Text unedited. Light, drawings, and background color change. |
 
 #### Paragraph Level
 
@@ -210,7 +210,7 @@ Welcome **issues, PR, and stars** for more comprehensive testing or join us to u
 
 | Input Image                                                  | Prompt                                          | Language | Output Image                                                 | Correctness & Quality                                        |
 | ------------------------------------------------------------ | ----------------------------------------------- | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| <p align="center"><img src="./images/scene/word-scene-text-editing-en-input.jpg" width=100%></p> | Change "2011" to "3120" and "MAPLES" to "LEAF". | EN       | <p align="center"><img src="./images/scene/word-scene-text-editing-en-output.png" width=100%></p> | 🤔<br/>Partially good. Successful removal. But the image is squared. Color unexpectedly brighten. |
+| <p align="center"><img src="./images/scene/word-scene-text-editing-en-input.jpg" width=100%></p> | Change "2011" to "3120" and "MAPLES" to "LEAF". | EN       | <p align="center"><img src="./images/scene/word-scene-text-editing-en-output.png" width=100%></p> | 🤔<br/>Partially good. Successful removal. However, the image is squared and color unexpectedly brighten. |
 
 ### Scene Text Removal
 
@@ -236,7 +236,7 @@ Welcome **issues, PR, and stars** for more comprehensive testing or join us to u
 | Prompt                                | Language | Output Image                                                 | Correctness & Quality         |
 | ------------------------------------- | -------- | ------------------------------------------------------------ | ----------------------------- |
 | Please generate an artistic font "A". | EN       | <p align="center"><img src="./images/artistic/character-t2i-generation-en-output.png" width=20%></p> | ✅<br/>Requirements fulfilled. |
-| 请生成一个艺术字，内容为“瀧”。        | ZH       | <p align="center"><img src="./images/artistic/character-t2i-generation-zh-output.png" width=20%></p> | ❌<br/>Totally failed. Unable to handle complex Chinese text |
+| 请生成一个艺术字，内容为“瀧”。        | ZH       | <p align="center"><img src="./images/artistic/character-t2i-generation-zh-output.png" width=20%></p> | ❌<br/>Totally failed. Unable to handle complex Chinese text. |
 
 ## <div align="center">Contact</div> <!-- omit in toc -->
 

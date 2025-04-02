@@ -1,4 +1,4 @@
-# <div align="center">GPT-4o Image Generation for OCR🚀
+# <div align="center" id="gpt-4o-image-generation-for-ocr">GPT-4o Image Generation for OCR🚀</div>
 
 <div align="center">
   <a href="http://dlvc-lab.net/lianwen/"> <img alt="SCUT DLVC Lab" src="https://img.shields.io/badge/SCUT-DLVC_Lab-A85882?logo=Academia&logoColor=hsl"></a>
@@ -10,7 +10,7 @@ GPT-4o can now [generate images natively](https://openai.com/index/introducing-4
 
 Welcome **issues, PR, and stars** for more comprehensive testing or join us to uncover the potential of GPT-4o for next-gen OCR applications! ✨
 
-## <div align="center">:book:Content</div> <!-- omit in toc -->
+## <div align="center" id="content">:book:Content</div> <!-- omit in toc -->
 
 - [Slide Image](#slide-image)
 - [Modern Document Image](#modern-document-image)
@@ -50,7 +50,7 @@ Welcome **issues, PR, and stars** for more comprehensive testing or join us to u
     - [Line Level](#line-level-2)
     - [Character (Font) Level](#character-font-level-1)
 
-## <div align="center">:milky_way:Slide Image</div> <!-- omit in toc -->
+## <div align="center" id="slide-image">:milky_way:Slide Image</div> <!-- omit in toc -->
 
 | Prompt                                                       | Language | Output Image                                                 | Correctness & Quality                                        |
 | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -58,7 +58,7 @@ Welcome **issues, PR, and stars** for more comprehensive testing or join us to u
 | Generate a visually stunning and informative PowerPoint slide. The slide should be meticulously designed with a sophisticated layout, incorporating a diverse range of elements. <br />Text: Include well-written, concise English text in a professional font (e.g., Arial, Calibri, Times New Roman). The text should be logically organized and easy to read, with a clear title and supporting bullet points or short paragraphs.<br />Illustrations: Integrate intricate patterns, detailed drawings, and artistic paintings. These visual elements should be relevant to the text and enhance the overall message of the slide. Consider using a consistent color palette to create a harmonious aesthetic.<br />Layout: The slide should have a balanced and visually appealing layout. Experiment with different arrangements of text and images to create a dynamic and engaging design. Use whitespace effectively to avoid clutter.<br />Details: Pay attention to fine details such as shadows, gradients, and textures to add depth and realism to the image. The overall impression should be one of high quality and professionalism. | EN       | <p align="center"><img src="./images/slide/en-output2.png" width=100%></p> | ✅<br/>Most requirements  in the prompt are fulfilled.        |
 | 一张视觉精美、信息丰富的长方形PPT幻灯片，主题为“未来科技与智能城市”。风格现代、科技感十足，整体排版清晰、专业，结构完整。幻灯片顶部是用中文写成的大标题“未来科技的城市图景”，使用无衬线字体，醒目现代。页面中部包含多个内容区域，展示有关智能交通系统、自动驾驶、物联网（IoT）、5G 网络基础设施等信息，每个部分配有简洁的中文段落说明和要点列表，如“智慧交通”、“数据中心”、“无人配送系统”等关键词以加粗或高亮方式呈现。页面中配有简洁清晰的图标、线条风格的插图、未来城市的建筑草图、以及科技设备的概念图。右下角是一个中文标注的数据图表（如柱状图或环形图）。背景为深蓝或渐变色调，带有抽象科技纹理。整体配色高对比，布局平衡有序，图文并茂，幻灯片应为完整内容，不能有留白或模板感。 | ZH       | <p align="center"><img src="./images/slide/zh-output.png" width=100%></p> | 🤔<br>Partially correct. Large text is good but smaller text is chaotic. |
 
-## <div align="center">📄Modern Document Image</div> <!-- omit in toc -->
+## <div align="center" id="modern-document-image">📄Modern Document Image</div> <!-- omit in toc -->
 
 #### Document Dewarping
 
@@ -96,7 +96,7 @@ Welcome **issues, PR, and stars** for more comprehensive testing or join us to u
 | <p align="center"><img src="./images/document/text-editing-zh-input.jpg" width=100%></p> | 帮我将图中的“人工智能”改为“深度学习”，“PyTorch”改为“TensorFlow” | ZH       | <p align="center"><img src="./images/document/text-editing-zh-output.png" width=100%></p> | 🤔<br/>Modified successfully but some contents are missed. |
 | <p align="center"><img src="./images/document/text-editing-zh-input2.jpg" width=100%></p> | 将价格改为21.88                                              | ZH       | <p align="center"><img src="./images/document/text-editing-zh-output2.png" width=100%></p> | 🤔<br/>Modified successfully but some contents are missed. |
 
-## <div align="center">📜Historical Document Image</div> <!-- omit in toc -->
+## <div align="center" id="historical-document-image">📜Historical Document Image</div> <!-- omit in toc -->
 
 ### T2I Generation
 
@@ -133,7 +133,7 @@ Welcome **issues, PR, and stars** for more comprehensive testing or join us to u
 | ------------------------------------------------------------ | --------------------------------------- | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | <p align="center"><img src="./images/historical/super-resolution-en-input.jpg" width=100%></p> | Perform super-resolution on this image. | EN       | <p align="center"><img src="./images/historical/super-resolution-en-output.png" width=100%></p> | ✅<br/>Requirements fulfilled despite some texts are cropped. |
 
-## <div align="center">:pencil2:Handwritten Text Image</div> <!-- omit in toc -->
+## <div align="center" id="handwritten-text-image">:pencil2:Handwritten Text Image</div> <!-- omit in toc -->
 
 ### T2I Generation
 
@@ -199,7 +199,7 @@ Welcome **issues, PR, and stars** for more comprehensive testing or join us to u
 | <p align="center"><img src="./images/artistic/line-style-transfer-zh-input.png" width=100%></p> | 参照图中的汉字风格，生成“一起去旅行”这句话 | ZH       | <p align="center"><img src="./images/artistic/line-style-transfer-zh-output.png" width=100%></p> | ✅<br/>Requirements fulfilled. |
 | <p align="center"><img src="./images/artistic/line-style-transfer-zh-input_2.png" width=100%></p> | 参照图中的汉字风格，生成“一起去旅行”这句话 | ZH       | <p align="center"><img src="./images/artistic/line-style-transfer-zh-output_2.png" width=100%></p> | ✅<br/>Requirements fulfilled. |
 
-## <div align="center">📷Scene Text Image</div> <!-- omit in toc -->
+## <div align="center" id="scene-text-image">📷Scene Text Image</div> <!-- omit in toc -->
 
 ### T2I Generation
 
@@ -222,7 +222,7 @@ Welcome **issues, PR, and stars** for more comprehensive testing or join us to u
 | <p align="center"><img src="./images/scene/word-scene-text-removal-en-input.jpg" width=100%></p> | Erase the "BEACH" in this image. | EN       | <p align="center"><img src="./images/scene/word-scene-text-removal-en-output.png" width=100%></p> | ✅<br/>Requirements fulfilled despite some details are lost. |
 | <p align="center"><img src="./images/scene/word-scene-text-removal-en-input2.jpg" width=100%></p> | Erase all text in this image.    | EN       | <p align="center"><img src="./images/scene/word-scene-text-removal-en-output2.png" width=100%></p> | ✅<br/>Requirements fulfilled despite the image is squared.  |
 
-## <div align="center">🔤Object with Naturally Embedded Text</div> <!-- omit in toc -->
+## <div align="center" id="object-with-naturally-embedded-text">🔤Object with Naturally Embedded Text</div> <!-- omit in toc -->
 
 ### T2I Generation
 
@@ -240,7 +240,7 @@ Welcome **issues, PR, and stars** for more comprehensive testing or join us to u
 
   |
 
-## <div align="center">:rainbow:Artistic Text Image</div> <!-- omit in toc -->
+## <div align="center" id="artistic-text-image">:rainbow:Artistic Text Image</div> <!-- omit in toc -->
 
 ### T2I Generation
 
@@ -259,12 +259,12 @@ Welcome **issues, PR, and stars** for more comprehensive testing or join us to u
 | Please generate an artistic font "A". | EN       | <p align="center"><img src="./images/artistic/character-t2i-generation-en-output.png" width=20%></p> | ✅<br/>Requirements fulfilled. |
 | 请生成一个艺术字，内容为“瀧”。        | ZH       | <p align="center"><img src="./images/artistic/character-t2i-generation-zh-output.png" width=20%></p> | ❌<br/>Totally failed. Unable to handle complex Chinese text. |
 
-## <div align="center">Contact</div> <!-- omit in toc -->
+## <div align="center" id="contact">Contact</div> <!-- omit in toc -->
 
 eeprzhang@mail.scut.edu.cn
 
-## <div align="center">Acknowledgement<!-- omit in toc -->
+## <div align="center" id="acknowledgement">Acknowledgement<!-- omit in toc -->
 
 [Peirong Zhang🐲](https://github.com/NiceRingNode), [Haowei Xu🔥](https://github.com/shallweiwei), [Guitao Xu😿](https://github.com/guitaoxu).
 
-Copyright 2025, [Deep Learning and Vision Computing (DLVC) Lab](http://www.dlvc-lab.net), South China China University of Technology. 
+Copyright 2025, [Deep Learning and Vision Computing (DLVC) Lab](http://www.dlvc-lab.net), South China China University of Technology.

@@ -44,6 +44,7 @@ Welcome **issues, PR, and stars** for more comprehensive testing or join us to u
   - [Scene Text Removal](#scene-text-removal)
 - [Object with Naturally Embedded Text](#object-with-naturally-embedded-text)
   - [T2I Generation](#t2i-generation-3)
+  - [Text Editing](#text-editing-4)
 - [Artistic Text Image](#artistic-text-image)
   - [T2I Generation](#t2i-generation-4)
     - [Line Level](#line-level-2)
@@ -230,6 +231,14 @@ Welcome **issues, PR, and stars** for more comprehensive testing or join us to u
 | 一张古董木制学生尺子的特写照片。英寸和厘米的刻度应该精确且可读，数字和线条由于年代久远而略有褪色。尺子放在一本打开的教科书上，书页上的文字清晰可辨。图片需要为长方形。             | EN       | <p align="center"><img src="./images/object/t2i-generation-en-output.png" width=100%></p> | ❌<br/>The generated ruler appears structurally correct but has flawed measurement markings (incorrect spacing/numbering).                                |
 | 生成一张高度细节化的老式机械键盘的图像，键帽磨损。键帽上的字符应该清晰可辨，准确地反映QWERTY布局。键盘应显示使用痕迹，有灰尘和轻微变色。背景是一个凌乱的木制桌子。                   | EN       | <p align="center"><img src="./images/object/t2i-generation-en-output2.png" width=100%></p> | ❌<br/>The keyboard's overall structure is correctly generated, but exhibits missing keycaps and contains incorrect legends on some remaining keycaps.                                |
 | Generate a photorealistic smartwatch with a high-resolution display showing authentic embedded UI elements. Feature a sleek metallic casing with subtle branding and precisely labeled buttons. The active screen should display clear time, health metrics and notifications with pixel-perfect readability. Ensure all text appears naturally integrated into the interface without artificial overlays. Include realistic material details like screen reflections and slight wear marks. Render in ultra HD with professional lighting for maximum realism. | EN    | <p align="center"><img src="./images/object/t2i-generation-en-output3.png" width=100%></p> | ✅<br/>Most requirements fulfilled. High quality. But the brand SMRTWRCH may be incorrect. |
+
+### Text Editing
+
+| Input Image                                                  | Prompt                                          | Language | Output Image                                                 | Correctness & Quality                                        |
+| ------------------------------------------------------------ | ----------------------------------------------- | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| <p align="center"><img src="./images/object/object-text-editing-mixed-input.jpg" width=100%></p> |  Adjust the dashboard to show a speed of 60 km/h with the speedometer needle correctly positioned. Also, set the tachometer to a realistic RPM for that speed, like 2000 RPM, ensuring the vehicle's status appears consistent and accurate. | MIXed  | <p align="center"><img src="./images/object/object-text-editing-mixed-output.png" width=100%></p> | 🤔<br/>Partially good. Speed is correct at 60 km/h, but there are text errors, wrong speedometer needle, and extra changes.
+
+  |
 
 ## <div align="center">:rainbow:Artistic Text Image</div> <!-- omit in toc -->
 

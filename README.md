@@ -10,6 +10,34 @@ GPT-4o can now [generate images natively](https://openai.com/index/introducing-4
 
 Welcome **issues, PR, and stars** for more comprehensive testing or join us to uncover the potential of GPT-4o for next-gen OCR applications! ✨
 
+## <div align="center" id="observations"> :gem:Observations</div> <!-- omit in toc -->
+
+**Tasks with Good Performance (few or no errors):**
+
+- Text-to-Image (T2I) Generation (Handwritten text, scene text, slides or other creative graphics, ancient text, overlapping text and images)
+- Text Super-Resolution, Text Style Transfer, Scene Text Removal
+
+**Tasks with Marginal Performance (sometimes works, sometimes doesn't):**
+
+- Handwritten Text Removal, Layout-Aware Text Generation
+
+**Tasks Currently Unachievable:**
+
+- Document Dewarping, Document Shadow Removal, Document Deblurring, Document Appearance Enhancement
+- Historical Document Restoration, Historical Document Style Transfer
+- [Ordered Text Generation](https://github.com/NiceRingNode/GPT-4o-Image-Generation-for-OCR?tab=readme-ov-file#object-with-naturally-embedded-text) (Generating text like 0, 1, 2, ...)
+
+**Technical Characteristics:**
+
+1. GPT-4o excels at generating creative and design-oriented images with text, such as slides and street scenes, when given detailed prompts.
+2. GPT-4o generates images with dimensions that are multiples of 512 pixels. Therefore, in tasks requiring image inputs (text editing, document dewarping, etc.), it mostly fails to maintain the original image's aspect ratio and incorrectly outputs images as square.
+3. Excellent at generating English text, but the accuracy of Chinese character generation is low. Only larger Chinese characters are generated accurately; smaller Chinese characters are almost completely incorrect.
+4. Can generate simplified Chinese characters but cannot generate [complex Chinese characters](https://github.com/NiceRingNode/GPT-4o-Image-Generation-for-OCR?tab=readme-ov-file#object-with-naturally-embedded-text).
+5. When performing image editing, the unedited parts of the image are not accurately replicated and are often accompanied by cropping, expansion, sharpening, detail changes, etc.
+6. In tasks involving image input, if the image contains dense text, the text content in the output image is likely to be severely garbled (e.g., document rectification, document shadow removal, historical document restoration, historical document style transfer).
+7. In tasks involving image input, if the image itself contains embedded graphics, the content of the embedded images cannot be restored in the output (e.g., document rectification).
+8. Most likely does not use OCR to recognize text and then re-render it.
+
 ## <div align="center" id="content">:book:Content</div> <!-- omit in toc -->
 
 - [Slide Image](#slide-image)
@@ -281,11 +309,11 @@ Welcome **issues, PR, and stars** for more comprehensive testing or join us to u
 | <p align="center"><img src="./images/layout/content-aware-layout-generation-en-input.jpg" width=100%></p> | Add text “Good coffee” in appropriate position with layout awareness. | EN       | <p align="center"><img src="./images/layout/content-aware-layout-generation-en-output.png" width=100%></p> | ❌<br/>Text is correct but coffee’s position is changed. Objects are not preserved. |
 | <p align="center"><img src="./images/layout/content-aware-layout-generation-en-input2.jpg" width=100%></p> | Add text “Camera is good” in appropriate position with layout awareness. | EN       | <p align="center"><img src="./images/layout/content-aware-layout-generation-en-output2.png" width=100%></p> | ✅<br/>Requirements fulfilled despite slight change on the text of camera. |
 
-## <div align="center" id="contact">Contact</div> <!-- omit in toc -->
+## <div align="center" id="contact">:e-mail:Contact</div> <!-- omit in toc -->
 
 eeprzhang@mail.scut.edu.cn
 
-## <div align="center" id="acknowledgement">Acknowledgement<!-- omit in toc -->
+## <div align="center" id="acknowledgement">🌊Acknowledgement<!-- omit in toc -->
 
 [Peirong Zhang🐲](https://github.com/NiceRingNode), [Haowei Xu🔥](https://github.com/shallweiwei), [Guitao Xu😿](https://github.com/guitaoxu).
 

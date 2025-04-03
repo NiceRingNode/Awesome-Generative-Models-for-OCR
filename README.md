@@ -29,14 +29,16 @@ Welcome **issues, PR, and stars** for more comprehensive testing or join us to u
 
 **Technical Characteristics:**
 
-1. GPT-4o excels at generating creative and design-oriented images with text, such as slides and street scenes, when given detailed prompts.
-2. GPT-4o generates images with dimensions that are multiples of 512 pixels. Therefore, in tasks requiring image inputs (text editing, document dewarping, etc.), it mostly fails to maintain the original image's aspect ratio and incorrectly outputs images as square.
-3. Excellent at generating English text, but the accuracy of Chinese character generation is low. Only larger Chinese characters are generated accurately; smaller Chinese characters are almost completely incorrect.
+1. GPT-4o excels at generating **creative and design-oriented images with text**, such as slides and street scenes, when given detailed prompts.
+2. GPT-4o generates images with dimensions that are multiples of 512 pixels. Therefore, in tasks requiring image inputs (text editing, document dewarping, etc.), it mostly **fails to maintain the original image's aspect ratio** and incorrectly outputs images as **square**.
+3. Excellent at generating English text, but the accuracy of Chinese character generation is low. Only larger Chinese characters are generated accurately; **smaller Chinese characters are almost completely incorrect**.
 4. Can generate simplified Chinese characters but cannot generate [complex Chinese characters](https://github.com/NiceRingNode/GPT-4o-Image-Generation-for-OCR?tab=readme-ov-file#object-with-naturally-embedded-text).
-5. When performing image editing, the unedited parts of the image are not accurately replicated and are often accompanied by cropping, expansion, sharpening, detail changes, etc.
-6. In tasks involving image input, if the image contains dense text, the text content in the output image is likely to be severely garbled (e.g., document rectification, document shadow removal, historical document restoration, historical document style transfer).
-7. In tasks involving image input, if the image itself contains embedded graphics, the content of the embedded images cannot be restored in the output (e.g., document rectification).
+5. When performing image editing, the unedited parts of the image **can not be accurately replicated** and are often accompanied by **cropping, expansion, sharpening, detail changes, etc.**
+6. In tasks involving image input, if the image contains dense text, the text in the output image is likely to be **severely garbled** (e.g., document rectification, document shadow removal, historical document restoration, historical document style transfer).
+7. In tasks involving image input, if the image itself contains embedded graphics, **the embedded graphics cannot be restored** in the output (e.g., document rectification).
 8. Most likely does not use OCR to recognize text and then re-render it.
+
+*Keep updating...*
 
 ## <div align="center" id="content">:book:Content</div> <!-- omit in toc -->
 

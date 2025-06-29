@@ -72,6 +72,12 @@ Welcome **🌟issues, PR, and stars🌟** for more comprehensive testing or join
 1. The model can partially handle English image generation or editing, whereas fails to perform Chinese image generation.
 2. It mostly **fails to maintain the original image's aspect ratio** and incorrectly outputs images as **square**. We did not find any parameters to control original size preserved generation. However, in the official website of [Flux.AI](https://flux1.ai/flux-kontext), the user can select “match input” as the output image’s dimension. We are looking into this.
 
+## Janus-4o
+
+**Technical Characteristics:**
+
+Janus-4o nearly has no text rendering ability in terms of either English or Chinese text, potentially due to its small model size (7B). 
+
 ## <div align="center" id="content">:book:Content</div> <!-- omit in toc -->
 
 - [Slide Image](#slide-image)

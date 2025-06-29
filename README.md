@@ -12,7 +12,7 @@ This repository is about evaluating state-of-the-art image generators' generatio
 
 Welcome **🌟issues, PR, and stars🌟** for more comprehensive testing or join us for more comprehensive evaluation!
 
-# <div align="center" id="news"> 📃News</div> <!-- omit in toc -->
+# <div align="center" id="news"> 📑News</div> <!-- omit in toc -->
 
 ### 📌Pinned
 

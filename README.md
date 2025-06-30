@@ -16,7 +16,7 @@ Welcome **🌟issues, PR, and stars🌟** for more comprehensive testing or join
 
 ### 📌Pinned
 
-- :fire: **[May 2025]** Expanded evaluation now includes various closed-source and **open-source** models!
+- :fire: **[June 2025]** Expanded evaluation now includes various closed-source and **open-source** models!
 
 -  📢 **[March 2025]** Initial evaluation of GPT-4o's image generation capabilities now available!
 

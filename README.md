@@ -123,11 +123,11 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
 - [Object with Naturally Embedded Text](#object-with-naturally-embedded-text)
   - [T2I Generation](#t2i-generation-3)
   - [Text Editing](#text-editing-4)
-- [Layout-aware Text Generation](#layout-aware-text-generation)
 - [Artistic Text Image](#artistic-text-image)
   - [T2I Generation](#t2i-generation-4)
     - [Line Level](#line-level-2)
     - [Character (Font) Level](#character-font-level-1)
+- [Layout-aware Text Generation](#layout-aware-text-generation)
 
 ## <div align="center" id="slide-image">:milky_way:Slide Image</div> <!-- omit in toc -->
 

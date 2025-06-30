@@ -62,7 +62,19 @@ Welcome **🌟issues, PR, and stars🌟** for more comprehensive testing or join
 
 1. The reliance (e.g., weights during generation) on previous history is too heavy, leading to poor instruction following sometimes.
 
+   <details> 
+   <summary>Click to view the figure example of this issue.</summary>
+
 <p align="center"><img src="./images/asset/qwen-vlo-history-error.png" width=50%></p>
+
+</details>
+
+2. Unable to smartly identify user intension of generating images or textual response. For example, when prompted to “remove all handwritten text in this image” (left), it provides a step-by-step textual explanation rather than producing the edited image. Only when explicitly instructed to “output the resulted image” (right) does the model generate the visual result users actually need.
+
+<p align="center">
+  <img src="./images/asset/qwen-vlo-understanding-error1.png" width="40%" />
+  <img src="./images/asset/qwen-vlo-understanding-error2.png" width="45%" />
+</p>
 
 2. It fails to render a large amount of text, no matter English or Chinese. Few successful cases.
 3. Poor instruction following ability. For instance, the model output squared images given the instruction of outputting rectangle images. It outputs a book page given the instruction of generating a slide.
@@ -281,18 +293,21 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
 
 #### Paragraph Level
 
-| Input Image                                                  | Prompt                                     | Lang. | Output Image                                                 | Assessment                                                   |
-| ------------------------------------------------------------ | ------------------------------------------ | ----- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| <p align="center"><img src="./images/handwritten/paragraph-handwritten-text-removal-zh-input.jpg" width=100%></p> | 请擦除这张图片中所有的手写笔迹             | ZH    | <p align="center"><img src="./images/handwritten/paragraph-handwritten-text-removal-zh-output.png" width=100%></p> | ❌<br/>Totally failed.                                        |
-| <p align="center"><img src="./images/handwritten/handwritten-text-removal-zh-input_2.png" width=100%></p> | 将"高考加油鸭"这句话擦除                   | ZH    | <p align="center"><img src="./images/handwritten/handwritten-text-removal-zh-output_2.png" width=100%></p> | 🤔<br/>Partially good. Successful removal. But the image is squared. Clarity unexpectedly improve. |
-| <p align="center"><img src="./images/handwritten/paragraph-handwritten-text-removal-en-input.jpg" width=100%></p> | Remove all handwritten text in this image. | EN    | <p align="center"><img src="./images/handwritten/paragraph-handwritten-text-removal-en-output.png" width=100%></p> | 🤔<br/>Partially good. Successful removal. But the image is squared. Drawings unexpectedly change. |
+| Input Image                                                  | Prompt                                     | Lang. | GPT-4o                                                       |                                                              | Qwen-VLo                                                     |                                                              |
+| ------------------------------------------------------------ | ------------------------------------------ | ----- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+|                                                              |                                            |       | Output Image                                                 | Assessment                                                   | Output Image                                                 | Assessment                                                   |
+| <p align="center"><img src="./images/handwritten/paragraph-handwritten-text-removal-zh-input.jpg" width=100%></p> | 请擦除这张图片中所有的手写笔迹             | ZH    | <p align="center"><img src="./images/handwritten/paragraph-handwritten-text-removal-zh-output.png" width=100%></p> | ❌<br/>Totally failed.                                        | <p align="center"><img src="./images/handwritten/qwen-vlo/paragraph-handwritten-text-removal-zh-output.png" width=100%></p> | ❌<br/>All things are removed.                                |
+| <p align="center"><img src="./images/handwritten/handwritten-text-removal-zh-input2.png" width=100%></p> | 将"高考加油鸭"这句话擦除                   | ZH    | <p align="center"><img src="./images/handwritten/handwritten-text-removal-zh-output2.png" width=100%></p> | 🤔<br/>Successful removal. But the image is squared. Clarity unexpectedly improve. | <p align="center"><img src="./images/handwritten/qwen-vlo/paragraph-handwritten-text-removal-zh-output2.png" width=100%></p> | ❌<br/>All texts are removed.                                 |
+| <p align="center"><img src="./images/handwritten/paragraph-handwritten-text-removal-en-input.jpg" width=100%></p> | Remove all handwritten text in this image. | EN    | <p align="center"><img src="./images/handwritten/paragraph-handwritten-text-removal-en-output.png" width=100%></p> | 🤔<br/>Successful removal. But the image is squared. Drawings unexpectedly change. | <p align="center"><img src="./images/handwritten/qwen-vlo/paragraph-handwritten-text-removal-en-output.png" width=100%></p> | 🤔<br/>Successful removal but the color and objects are changed. |
 
 ### Style Transfer
 
-| Input Image                                                  | Prompt                                     | Lang. | Output Image                                                 | Assessment                    |
-| ------------------------------------------------------------ | ------------------------------------------ | ----- | ------------------------------------------------------------ | ----------------------------- |
-| <p align="center"><img src="./images/artistic/line-style-transfer-zh-input.png" width=100%></p> | 参照图中的汉字风格，生成“一起去旅行”这句话 | ZH    | <p align="center"><img src="./images/artistic/line-style-transfer-zh-output.png" width=100%></p> | ✅<br/>Requirements fulfilled. |
-| <p align="center"><img src="./images/artistic/line-style-transfer-zh-input_2.png" width=100%></p> | 参照图中的汉字风格，生成“一起去旅行”这句话 | ZH    | <p align="center"><img src="./images/artistic/line-style-transfer-zh-output_2.png" width=100%></p> | ✅<br/>Requirements fulfilled. |
+| Input Image                                                  | Prompt                                                       | Lang. | GPT-4o                                                       |                               | Qwen-VLo                                                     |                                       |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ----- | ------------------------------------------------------------ | ----------------------------- | ------------------------------------------------------------ | ------------------------------------- |
+|                                                              |                                                              |       | Output Image                                                 | Assessment                    | Output  Image                                                | Assessment                            |
+| <p align="center"><img src="./images/artistic/line-style-transfer-zh-input.png" width=100%></p> | 参照图中的汉字风格，生成“一起去旅行”这句话                   | ZH    | <p align="center"><img src="./images/artistic/line-style-transfer-zh-output.png" width=100%></p> | ✅<br/>Requirements fulfilled. | <p align="center"><img src="./images/artistic/qwen-vlo/line-style-transfer-zh-output.png" width=100%></p> | 🤔<br/>Some texts are wrong.           |
+| <p align="center"><img src="./images/artistic/line-style-transfer-zh-input2.png" width=100%></p> | 参照图中的汉字风格，生成“一起去旅行”这句话                   | ZH    | <p align="center"><img src="./images/artistic/line-style-transfer-zh-output2.png" width=100%></p> | ✅<br/>Requirements fulfilled. | <p align="center"><img src="./images/artistic/qwen-vlo/line-style-transfer-zh-output2.png" width=100%></p> | ❌<br/>Totally failed.                 |
+| <p align="center"><img src="./images/artistic/line-style-transfer-en-input.jpeg" width=100%></p> | Refer to the text style of this image, create an image with text “You are welcome” | EN    | <p align="center"><img src="./images/artistic/line-style-transfer-en-output.png" width=100%></p> | ✅<br/>Requirements fulfilled. | <p align="center"><img src="./images/artistic/qwen-vlo/line-style-transfer-en-output.png" width=100%></p> | 🤔<br/>Additional texts are generated. |
 
 ## <div align="center" id="scene-text-image">📷Scene Text Image</div> <!-- omit in toc -->
 

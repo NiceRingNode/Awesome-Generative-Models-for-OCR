@@ -63,12 +63,7 @@ Welcome **🌟issues, PR, and stars🌟** for more comprehensive testing or join
 
 1. The reliance (e.g., weights during generation) on previous history is too heavy, leading to poor instruction following sometimes.
 
-   <details> 
-   <summary>Click to view the figure example of this issue.</summary>
-
 <p align="center"><img src="./images/asset/qwen-vlo-history-error.png" width=50%></p>
-
-</details>
 
 2. Unable to smartly identify user intension of generating images or textual response. For example, when prompted to “remove all handwritten text in this image” (left), it provides a step-by-step textual explanation rather than producing the edited image. Only when explicitly instructed to “output the resulted image” (right) does the model generate the visual result users actually need.
 

@@ -72,8 +72,8 @@ Welcome **🌟issues, PR, and stars🌟** for more comprehensive testing or join
   <img src="./images/asset/qwen-vlo-understanding-error2.png" width="45%" />
 </p>
 
-2. It fails to render a large amount of text, no matter English or Chinese. Few successful cases.
-3. Poor instruction following ability. For instance, the model output squared images given the instruction of outputting rectangle images. It outputs a book page given the instruction of generating a slide.
+3. It fails to render a large amount of text, no matter English or Chinese. Few successful cases.
+4. Poor instruction following ability. For instance, the model output squared images given the instruction of outputting rectangle images. It outputs a book page given the instruction of generating a slide.
 
 ## Flux.1-Kontext-dev
 

@@ -757,7 +757,9 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   <h3>T2I Generation</h3>
 </div>
 
-#### Page Level
+<div align="center" id="page-level-1">
+  <h3>Page Level</h3>
+</div>
 
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>

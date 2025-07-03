@@ -6,6 +6,7 @@
 <p></p>
 </div>
 
+
 This repository is about evaluating state-of-the-art image generators’ generation and editing capability on various **Optical Character Recognition (OCR)** tasks, including both **closed-source** and **open-source** models. Currently, we have tested [GPT-4o](https://openai.com/index/introducing-4o-image-generation/), [Qwen-VLo](https://qwenlm.github.io/zh/blog/qwen-vlo/), [Flux.1-Kontext-dev](https://huggingface.co/black-forest-labs/FLUX.1-Kontext-dev), and [Janus-4o](https://huggingface.co/FreedomIntelligence/Janus-4o-7B). The evaluation include **generating** multiple types of text images (handwritten notes, printed documents, poster, street signs, historical manuscript, etc.) and **editing** specific content of text images. We aim to understand the boundaries of SOTA image generation models applied to the specialized field of OCR, identify remaining challenges, and explore **how close we are to achieving AGI-level capabilities in this domain**.
 
 > *This repository This repository was formerly known as **GPT-4o-Image-Generation-for-OCR**, and was used only to test the image generation capabilities of GPT-4o. Now we are expanding our evaluation to more models, especially **open-source models.***
@@ -18,7 +19,7 @@ Welcome **🌟issues, PR, and stars🌟** for more comprehensive testing or join
 
 - :fire: **[June 2025]** Expanded evaluation now includes various closed-source and **open-source** models!
 
--  📢 **[March 2025]** Initial evaluation of GPT-4o's image generation capabilities now available!
+- 📢 **[March 2025]** Initial evaluation of GPT-4o's image generation capabilities now available!
 
 ## <div align="center" id="observations"> :gem:Observations</div> <!-- omit in toc -->
 
@@ -47,6 +48,7 @@ Welcome **🌟issues, PR, and stars🌟** for more comprehensive testing or join
 <details> 
 <summary>Click to view detailed observations of GPT-4o's evaluation.</summary>
 
+
 3. Excellent at generating English text, but the accuracy of Chinese character generation is low. Only larger Chinese characters are generated accurately; **smaller Chinese characters are almost completely incorrect**.
 
 4. Can generate simplified Chinese characters but cannot generate [complex Chinese characters](https://github.com/NiceRingNode/GPT-4o-Image-Generation-for-OCR?tab=readme-ov-file#object-with-naturally-embedded-text).
@@ -71,6 +73,7 @@ Welcome **🌟issues, PR, and stars🌟** for more comprehensive testing or join
   <img src="./images/asset/qwen-vlo-understanding-error1.png" width="40%" />
   <img src="./images/asset/qwen-vlo-understanding-error2.png" width="45%" />
 </p>
+
 
 3. It fails to render a large amount of text, no matter English or Chinese. Few successful cases.
 4. Poor instruction following ability. For instance, the model output squared images given the instruction of outputting rectangle images. It outputs a book page given the instruction of generating a slide.
@@ -198,12 +201,14 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   </tbody>
 </table>
 
-<!-- Modern Document Image Section -->
-### Document Dewarping
-
 <div align="center" id="modern-document-image">
   <h2>📄Modern Document Image</h2>
 </div>
+
+<div align="center" id="document-dewarping">
+  <h3>Document Dewarping</h3>
+</div>
+
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -299,7 +304,9 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   </tbody>
 </table>
 
-### Document Deshadowing
+<div align="center" id="document-deshaodwing">
+  <h3>Document Deshadowing</h3>
+</div>
 
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
@@ -347,7 +354,10 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   </tbody>
 </table>
 
-### Document Deblur
+<div align="center" id="document-deblur">
+  <h3>Document Deblur</h3>
+</div>
+
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -376,7 +386,10 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   </tbody>
 </table>
 
-### Appearance Enhancement
+<div align="center" id="appearance-enhancement">
+  <h3>Appearance Enhancement</h3>
+</div>
+
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -410,7 +423,11 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   </tbody>
 </table>
 
-### Text Editing
+<div align="center" id="text-editing">
+  <h3>Text Editing</h3>
+</div>
+
+
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -483,13 +500,17 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   </tbody>
 </table>
 
+
 <!-- Historical Document Image Section -->
 
 <div align="center" id="historical-document-image">
   <h2>📜Historical Document Image</h2>
 </div>
 
-### T2I Generation
+<div align="center" id="t2i-generation">
+  <h3>T2I Generation</h3>
+</div>
+
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -552,7 +573,10 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   </tbody>
 </table>
 
-### Text Editing
+<div align="center" id="text-editing-1">
+  <h3>Text Editing</h3>
+</div>
+
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -604,7 +628,10 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   </tbody>
 </table>
 
-### Historical Document Restoration
+<div align="center" id="historical-document-restoration">
+  <h3>Historical Document Restoration</h3>
+</div>
+
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -646,7 +673,10 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   </tbody>
 </table>
 
-### Style Transfer
+<div align="center" id="style-transfer">
+  <h3>Style Transfer</h3>
+</div>
+
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -677,7 +707,9 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   </tbody>
 </table>
 
-### Super Resolution
+<div align="center" id="super-resolution">
+  <h3>Super Resolution</h3>
+</div>
 
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
@@ -721,9 +753,12 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   <h2>:pencil2:Handwritten Text Image</h2>
 </div>
 
-### T2I Generation
+<div align="center" id="t2i-generation-1">
+  <h3>T2I Generation</h3>
+</div>
 
 #### Page Level
+
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -797,7 +832,10 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   <td>❌<br/>Unreadable text and missing content.</td>
 </tr>
 
-#### Paragraph Level
+<div align="center" id="paragraph-level">
+  <h4>Paragraph Level</h4>
+</div>
+
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -829,7 +867,10 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   </tbody>
 </table>
 
-#### Line Level
+<div align="center" id="line-level">
+  <h4>Line Level</h4>
+</div>
+
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -866,7 +907,10 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   </tbody>
 </table>
 
-#### Character (Font) Level
+<div align="center" id="character-font-level">
+  <h4>Character (Font) Level</h4>
+</div>
+
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -915,7 +959,10 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   </tbody>
 </table>
 
-#### Interleaved Image-Text
+<div align="center" id="interleaved-image-text">
+  <h4>Interleaved Image-Text</h4>
+</div>
+
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -952,10 +999,13 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   </tbody>
 </table>
 
+<div align="center" id="text-editing">
+  <h3>Text Editing</h3>
+</div>
 
-### Text Editing
-
-#### Page Level
+<div align="center" id="page-level-1">
+  <h4>Page Level</h4>
+</div>
 
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
@@ -996,9 +1046,10 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   <td>❌<br/>Text is added, but some content is missing.</td>
 </tr>
 
-  </tbody>
+<div align="center" id="paragraph-level-1">
+  <h4>Paragraph Level</h4>
+</div>
 
-#### Paragraph Level
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -1027,7 +1078,10 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   </tbody>
 </table>
 
-#### Line Level
+<div align="center" id="line-level-1">
+  <h4>Line Level</h4>
+</div>
+
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -1056,9 +1110,14 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   </tbody>
 </table><!-- Add other sections here similarly -->
 
+<div align="center" id="handwritten-text-removal">
+  <h3>Handwritten Text Removal</h3>
+</div>
 
-### Handwritten Text Removal
-#### Paragraph Leve
+<div align="center" id="paragraph-level-2">
+  <h4>Paragraph Level</h4>
+</div>
+
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -1111,11 +1170,15 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   <td>🤔<br/>Successful removal but the color and objects are changed.</td>
 </tr>
 
+
 <div align="center" id="scene-text-image">
   <h2>📷Scene Text Image</h2>
 </div>
 
-### T2I Generation
+<div align="center" id="t2i-generation-2">
+  <h3>T2I Generation</h3>
+</div>
+
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -1181,7 +1244,10 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   </tbody>
 </table>
 
-### Text Editing
+<div align="center" id="text-editing-2">
+  <h3>Text Editing</h3>
+</div>
+
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -1215,7 +1281,9 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   </tbody>
 </table>
 
-### Scene Text Removal
+<div align="center" id="scene-text-removal">
+  <h3>Scene Text Removal</h3>
+</div>
 
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
@@ -1269,11 +1337,15 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
 </table>
 
 
+
 <div align="center" id="object-with-naturally-embedded-text">
     <h2>🔤Object with Naturally Embedded Text</h2>
 </div>
 
-### T2I Generation
+<div align="center" id="t2i-generation-3">
+  <h3>T2I Generation</h3>
+</div>
+
 <table border="1" align="center" style="width: 100%; text-align: left;">
     <thead>
         <tr>
@@ -1337,7 +1409,10 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
     </tbody>
 </table>
 
-### Text Editing
+<div align="center" id="text-editing-4">
+  <h3>Text Editing</h3>
+</div>
+
 <table border="1" align="center" style="width: 100%; text-align: left;">
     <thead>
         <tr>
@@ -1380,14 +1455,18 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
         </tr>
     </tbody>
 </table>
-<!-- Artistic Text Image -->
 
 <div align="center" id="artistic-text-image">
     <h2>:rainbow:Artistic Text Image</h2>
 </div>
 
-### T2I Generation
-#### Line Level
+<div align="center" id="t2i-generation-4">
+  <h3>T2I Generation</h3>
+</div>
+
+<div align="center" id="line-level-3">
+  <h4>Line Level</h4>
+</div>
 
 <table border="1" align="center" style="width: 100%; text-align: left;">
     <thead>
@@ -1428,7 +1507,9 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
     </tbody>
 </table>
 
-#### Character (Font) Level
+<div align="center" id="character-font-level-1">
+  <h4>Character (Font) Level</h4>
+</div>
 
 <table border="1" align="center" style="width: 100%; text-align: left;">
     <thead>
@@ -1473,7 +1554,10 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
     </tbody>
 </table>
 
-### Style Transfer
+<div align="center" id="style-transfer-1">
+  <h3>Style Transfer</h3>
+</div>
+
 <table border="1" align="center" style="width: 100%; text-align: left;">
     <thead>
         <tr>
@@ -1517,10 +1601,10 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
     </tbody>
 </table>
 
-<!-- Layout-aware Text Generation -->
 <div align="center" id="layout-aware-text-generation">
     <h2>🕌Layout-aware Text Generation</h2>
 </div>
+
 
 <table border="1" align="center" style="width: 100%; text-align: left;">
     <thead>
@@ -1562,12 +1646,11 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
     </tbody>
 </table>
 
+
 ## <div align="center" id="contact">:e-mail:Contact</div> <!-- omit in toc -->
 
 eeprzhang@mail.scut.edu.cn
 
 ## <div align="center" id="acknowledgement">🌊Acknowledgement<!-- omit in toc -->
-
-[Peirong Zhang](https://github.com/NiceRingNode), [Haowei Xu](https://github.com/shallweiwei), [Guitao Xu](https://github.com/guitaoxu).
 
 Copyright 2025, [Deep Learning and Vision Computing (DLVC) Lab](http://www.dlvc-lab.net), South China China University of Technology.

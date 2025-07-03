@@ -199,11 +199,11 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
 </table>
 
 <!-- Modern Document Image Section -->
+### Document Dewarping
 
 <div align="center" id="modern-document-image">
   <h2>📄Modern Document Image</h2>
 </div>
-<h3>Document Dewarping</h3>
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -299,7 +299,8 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   </tbody>
 </table>
 
-<h3>Document Deshadowing</h3>
+### Document Deshadowing
+
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -346,7 +347,7 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   </tbody>
 </table>
 
-<h3>Document Deblur</h3>
+### Document Deblur
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -375,7 +376,7 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   </tbody>
 </table>
 
-<h3>Appearance Enhancement</h3>
+### Appearance Enhancement
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -409,7 +410,7 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   </tbody>
 </table>
 
-<h3>Text Editing</h3>
+### Text Editing
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -487,7 +488,8 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
 <div align="center" id="historical-document-image">
   <h2>📜Historical Document Image</h2>
 </div>
-<h3>T2I Generation</h3>
+
+### T2I Generation
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -550,7 +552,7 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   </tbody>
 </table>
 
-<h3>Text Editing</h3>
+### Text Editing
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -602,7 +604,7 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   </tbody>
 </table>
 
-<h3>Historical Document Restoration</h3>
+### Historical Document Restoration
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -644,7 +646,7 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   </tbody>
 </table>
 
-<h3>Style Transfer</h3>
+### Style Transfer
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -675,7 +677,8 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   </tbody>
 </table>
 
-<h3>Super Resolution</h3>
+### Super Resolution
+
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -718,9 +721,9 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   <h2>:pencil2:Handwritten Text Image</h2>
 </div>
 
-<h3>T2I Generation</h3>
+### T2I Generation
 
-<h4>Page Level</h4>
+#### Page Level
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -793,7 +796,8 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   <td><img src="./images/handwritten/qwen-vlo/page-t2i-generation-zh-output3.png" width="100%"></td>
   <td>❌<br/>Unreadable text and missing content.</td>
 </tr>
-<h4>Paragraph Level</h4>
+
+#### Paragraph Level
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -825,7 +829,7 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   </tbody>
 </table>
 
-<h4>Line Level</h4>
+#### Line Level
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -862,7 +866,7 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   </tbody>
 </table>
 
-<h4>Character (Font) Level</h4>
+#### Character (Font) Level
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -911,7 +915,7 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   </tbody>
 </table>
 
-<h4>Interleaved Image-Text</h4>
+#### Interleaved Image-Text
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -949,9 +953,10 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
 </table>
 
 
+### Text Editing
 
-<h3>Text Editing</h3>
-<h4>Page Level</h4>
+#### Page Level
+
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -993,8 +998,7 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
 
   </tbody>
 
-
-<h4>Paragraph Level</h4>
+#### Paragraph Level
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -1023,7 +1027,7 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   </tbody>
 </table>
 
-<h4>Line Level</h4>
+#### Line Level
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -1052,8 +1056,9 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   </tbody>
 </table><!-- Add other sections here similarly -->
 
-<h3>Handwritten Text Removal</h3>
-<h4>Paragraph Level</h4>
+
+### Handwritten Text Removal
+#### Paragraph Leve
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -1110,7 +1115,7 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   <h2>📷Scene Text Image</h2>
 </div>
 
-<h3>T2I Generation</h3>
+### T2I Generation
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -1176,7 +1181,7 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
   </tbody>
 </table>
 
-<h3>Text Editing</h3>
+### Text Editing
 <table border="1" align="center" style="width: 100%; text-align: left;">
   <thead>
     <tr>
@@ -1209,6 +1214,7 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
     </tr>
   </tbody>
 </table>
+
 ### Scene Text Removal
 
 <table border="1" align="center" style="width: 100%; text-align: left;">
@@ -1267,7 +1273,7 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
     <h2>🔤Object with Naturally Embedded Text</h2>
 </div>
 
-<h3>T2I Generation</h3>
+### T2I Generation
 <table border="1" align="center" style="width: 100%; text-align: left;">
     <thead>
         <tr>
@@ -1331,7 +1337,7 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
     </tbody>
 </table>
 
-<h3>Text Editing</h3>
+### Text Editing
 <table border="1" align="center" style="width: 100%; text-align: left;">
     <thead>
         <tr>
@@ -1380,9 +1386,9 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
     <h2>:rainbow:Artistic Text Image</h2>
 </div>
 
-<h3>T2I Generation</h3>
+### T2I Generation
+#### Line Level
 
-<h4>Line Level</h4>
 <table border="1" align="center" style="width: 100%; text-align: left;">
     <thead>
         <tr>
@@ -1422,7 +1428,8 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
     </tbody>
 </table>
 
-<h4>Character (Font) Level</h4>
+#### Character (Font) Level
+
 <table border="1" align="center" style="width: 100%; text-align: left;">
     <thead>
         <tr>
@@ -1466,7 +1473,7 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
     </tbody>
 </table>
 
-<h3>Style Transfer</h3>
+### Style Transfer
 <table border="1" align="center" style="width: 100%; text-align: left;">
     <thead>
         <tr>
@@ -1555,11 +1562,11 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
     </tbody>
 </table>
 
-\## <div align="center" id="contact">:e-mail:Contact</div> <!-- omit in toc -->
+## <div align="center" id="contact">:e-mail:Contact</div> <!-- omit in toc -->
 
 eeprzhang@mail.scut.edu.cn
 
-\## <div align="center" id="acknowledgement">🌊Acknowledgement<!-- omit in toc -->
+## <div align="center" id="acknowledgement">🌊Acknowledgement<!-- omit in toc -->
 
 [Peirong Zhang](https://github.com/NiceRingNode), [Haowei Xu](https://github.com/shallweiwei), [Guitao Xu](https://github.com/guitaoxu).
 

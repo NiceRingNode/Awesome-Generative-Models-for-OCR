@@ -114,7 +114,6 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
     - [Paragraph Level](#paragraph-level-1)
     - [Line Level](#line-level-1)
   - [Handwritten Text Removal](#handwritten-text-removal)
-    - [Paragraph Level](#paragraph-level-2)
 - [Scene Text Image](#scene-text-image)
   - [T2I Generation](#t2i-generation-2)
   - [Text Editing](#text-editing-3)
@@ -275,7 +274,6 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
 | Input Image                                                  | Prompt                                                       | Lang. | GPT-4o                                                       |                                                              | Qwen-VLo                                                     |                                                              |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ----- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 |                                                              |                                                              |       | Output Image                                                 | Assessment                                                   | Output Image                                                 | Assessment                                                   |
-| <p align="center"><img src="./images/handwritten/page-text-editing-en-input.jpg" width=100%></p> | Erase text "Football, cricket, running" in this image.       | EN    | <p align="center"><img src="./images/handwritten/page-text-editing-en-output.png" width=100%></p> | ❌<br/>Text unedited. Light, drawings, and background color change. | <p align="center"><img src="./images/handwritten/qwen-vlo/page-text-editing-en-output.png" width=100%></p> | ❌<br/>Some content has been mistakenly removed,  and certain text has become unreadable. |
 | <p align="center"><img src="./images/handwritten/page-t2i-generation-en-output2.png" width=100%></p> | Add an embossed word that reads “Sun rises.” in the appropriate place. | EN    | <p align="center"><img src="./images/handwritten/page-text-editing-en-output2.png" width=100%></p> | ❌<br/>Text is added but some text is cropped and image is cropped into a square format. | <p align="center"><img src="./images/handwritten/qwen-vlo/page-text-editing-en-output2.png" width=100%></p> | ❌<br/>Text is added, but some content is missing.            |
 
 #### Paragraph Level
@@ -294,14 +292,13 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
 
 ### Handwritten Text Removal
 
-#### Paragraph Level
-
 | Input Image                                                  | Prompt                                     | Lang. | GPT-4o                                                       |                                                              | Qwen-VLo                                                     |                                                              |
 | ------------------------------------------------------------ | ------------------------------------------ | ----- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 |                                                              |                                            |       | Output Image                                                 | Assessment                                                   | Output Image                                                 | Assessment                                                   |
 | <p align="center"><img src="./images/handwritten/paragraph-handwritten-text-removal-zh-input.jpg" width=100%></p> | 请擦除这张图片中所有的手写笔迹             | ZH    | <p align="center"><img src="./images/handwritten/paragraph-handwritten-text-removal-zh-output.png" width=100%></p> | ❌<br/>Totally failed.                                        | <p align="center"><img src="./images/handwritten/qwen-vlo/paragraph-handwritten-text-removal-zh-output.png" width=100%></p> | ❌<br/>All things are removed.                                |
 | <p align="center"><img src="./images/handwritten/handwritten-text-removal-zh-input2.png" width=100%></p> | 将"高考加油鸭"这句话擦除                   | ZH    | <p align="center"><img src="./images/handwritten/handwritten-text-removal-zh-output2.png" width=100%></p> | 🤔<br/>Successful removal. But the image is squared. Clarity unexpectedly improve. | <p align="center"><img src="./images/handwritten/qwen-vlo/paragraph-handwritten-text-removal-zh-output2.png" width=100%></p> | ❌<br/>All texts are removed.                                 |
 | <p align="center"><img src="./images/handwritten/paragraph-handwritten-text-removal-en-input.jpg" width=100%></p> | Remove all handwritten text in this image. | EN    | <p align="center"><img src="./images/handwritten/paragraph-handwritten-text-removal-en-output.png" width=100%></p> | 🤔<br/>Successful removal. But the image is squared. Drawings unexpectedly change. | <p align="center"><img src="./images/handwritten/qwen-vlo/paragraph-handwritten-text-removal-en-output.png" width=100%></p> | 🤔<br/>Successful removal but the color and objects are changed. |
+| <p align="center"><img src="./images/handwritten/page-text-editing-en-input.jpg" width=100%></p> | Erase text "Football, cricket, running" in this image.       | EN    | <p align="center"><img src="./images/handwritten/page-text-editing-en-output.png" width=100%></p> | ❌<br/>Text unedited. Light, drawings, and background color change. | <p align="center"><img src="./images/handwritten/qwen-vlo/page-text-editing-en-output.png" width=100%></p> | ❌<br/>Some content has been mistakenly removed,  and certain text has become unreadable. |
 
 ## <div align="center" id="scene-text-image">📷Scene Text Image</div> <!-- omit in toc -->
 

@@ -5,6 +5,9 @@
   <a href="https://arxiv.org/abs/2507.15085"> <img alt="Static Badge" src="https://img.shields.io/badge/arXiv-2507.15085-%23CE0000?logo=arXiv&logoColor=rgb&labelColor=gray"></a>
   <a href="./LICENSE"> <img alt="Static Badge" src="https://img.shields.io/badge/License-Apache2.0-FFBF00?logo=GNUBash&logoColor=rgb&labelColor=006622"></a>
 <p></p>
+
+<a href="https://arxiv.org/abs/2507.15085"> <b>Aesthetics is Cheap, Show me the Text: An Empirical Evaluation of State-of-the-Art Generative Models for OCR</b> </a>
+
 </div>
 
 This repository is about evaluating state-of-the-art image generators’ generation and editing capability on various **Optical Character Recognition (OCR)** tasks, including both **closed-source** and **open-source** models. Currently, we have tested [GPT-4o](https://openai.com/index/introducing-4o-image-generation/), [Qwen-VLo](https://qwenlm.github.io/zh/blog/qwen-vlo/), [Flux.1-Kontext-dev](https://huggingface.co/black-forest-labs/FLUX.1-Kontext-dev), and [Janus-4o](https://huggingface.co/FreedomIntelligence/Janus-4o-7B). The evaluation include **generating** multiple types of text images (handwritten notes, printed documents, poster, street signs, historical manuscript, etc.) and **editing** specific content of text images. We aim to understand the boundaries of SOTA image generation models applied to the specialized field of OCR, identify remaining challenges, and explore **how close we are to achieving AGI-level capabilities in this domain**.

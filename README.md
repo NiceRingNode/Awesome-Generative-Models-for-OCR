@@ -2,6 +2,7 @@
 
 <div align="center">
   <a href="http://dlvc-lab.net/lianwen/"> <img alt="SCUT DLVC Lab" src="https://img.shields.io/badge/SCUT-DLVC_Lab-A85882?logo=Academia&logoColor=hsl"></a>
+  <a href="https://arxiv.org/abs/2507.15085"> <img alt="Static Badge" src="https://img.shields.io/badge/arXiv-2507.15085-%23CE0000?logo=arXiv&logoColor=rgb&labelColor=gray"></a>
   <a href="./LICENSE"> <img alt="Static Badge" src="https://img.shields.io/badge/License-Apache2.0-FFBF00?logo=GNUBash&logoColor=rgb&labelColor=006622"></a>
 <p></p>
 </div>
@@ -15,6 +16,8 @@ Welcome **🌟issues, PR, and stars🌟** for more comprehensive testing or join
 # <div align="center" id="news"> 📃News</div> <!-- omit in toc -->
 
 ### 📌Pinned
+
+- :tada: **[July 2025]** Our [paper](https://arxiv.org/abs/2507.15085) is online at arXiv! Welcome citation and star if you found our work useful! :blush:
 
 - :fire: **[June 2025]** Expanded evaluation now includes various closed-source and **open-source** models!
 

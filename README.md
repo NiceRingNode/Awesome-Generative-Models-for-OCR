@@ -451,7 +451,7 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
 
 ## <div align="center" id="citation">📋Citation</div> <!-- omit in toc -->
 
-If you found our work helps, please cite our paper:
+If you find our work helpful, please cite our paper:
 ```bibtex
 @article{zhang2025aesthetics,
   title={{Aesthetics is Cheap, Show me the Text: An Empirical Evaluation of State-of-the-Art Generative Models for OCR}},

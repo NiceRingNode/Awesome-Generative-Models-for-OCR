@@ -9,7 +9,7 @@
 
 <a href="https://arxiv.org/abs/2507.15085"> <b>Aesthetics is Cheap, Show me the Text: An Empirical Evaluation of State-of-the-Art Generative Models for OCR</b> </a>
 
-<b>arXiv Paper</b>
+<b>arXiv Paper, 2025</b>
 
 </div>
 

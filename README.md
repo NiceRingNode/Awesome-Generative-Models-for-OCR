@@ -449,13 +449,23 @@ Janus-4o nearly has no text rendering ability in terms of either English or Chin
 | <p align="center"><img src="./images/layout/content-aware-layout-generation-zh-input.jpg" width=100%></p> | 根据图片布局，在适当的位置添加文字“吃水果有益身体健康”。     | ZH    | <p align="center"><img src="./images/layout/gpt4-o/content-aware-layout-generation-zh-output.png" width=100%></p> |                                                              | <p align="center"><img src="./images/layout/qwen-vlo/content-aware-layout-generation-zh-output.png" width=100%></p> |                               | <p align="center"><img src="./images/layout/flux.1-kontext-dev/content-aware-layout-generation-zh-output.png" width=100%></p> |                                              | <p align="center"><img src="./images/layout/omnigen2/content-aware-layout-generation-zh-output.png" width=100%></p> |            | <p align="center"><img src="./images/layout/bagel/content-aware-layout-generation-zh-output.png" width=100%></p> |            | <p align="center"><img src="./images/layout/janus-4o/content-aware-layout-generation-zh-output.png" width=100%></p> |            |
 | <p align="center"><img src="./images/layout/content-aware-layout-generation-zh-input2.jpg" width=100%></p> | 根据图片布局，在透当的位置添加文字“这个蛋糕很好吃”。         | ZH    | <p align="center"><img src="./images/layout/gpt4-o/content-aware-layout-generation-zh-output2.png" width=100%></p> |                                                              | <p align="center"><img src="./images/layout/qwen-vlo/content-aware-layout-generation-zh-output2.png" width=100%></p> |                               | <p align="center"><img src="./images/layout/flux.1-kontext-dev/content-aware-layout-generation-zh-output2.png" width=100%></p> |                                              | <p align="center"><img src="./images/layout/omnigen2/content-aware-layout-generation-zh-output2.png" width=100%></p> |            | <p align="center"><img src="./images/layout/bagel/content-aware-layout-generation-zh-output2.png" width=100%></p> |            | <p align="center"><img src="./images/layout/janus-4o/content-aware-layout-generation-zh-output2.png" width=100%></p> |            |
 
+## <div align="center" id="citation">📋Citation</div> <!-- omit in toc -->
+
+If you found our work helps, please cite our paper:
+```bibtex
+@article{zhang2025aesthetics,
+  title={{Aesthetics is Cheap, Show me the Text: An Empirical Evaluation of State-of-the-Art Generative Models for OCR}},
+  author={Zhang, Peirong and Xu, Haowei and Zhang, Jiaxin and Xu, Guitao and Zheng, Xuhan and Yang, Zhenhua and Liu, Junle and Zhang, Yuyi and Jin, Lianwen},
+  journal={arXiv preprint arXiv:2507.15085},
+  year={2025}
+}
+```
+
 ## <div align="center" id="contact">:e-mail:Contact</div> <!-- omit in toc -->
 
 eeprzhang@mail.scut.edu.cn
 
 ## <div align="center" id="acknowledgement">🌊Acknowledgement<!-- omit in toc -->
-
-[Peirong Zhang](https://github.com/NiceRingNode), [Haowei Xu](https://github.com/shallweiwei), [Guitao Xu](https://github.com/guitaoxu).
 
 Copyright 2025, [Deep Learning and Vision Computing (DLVC) Lab](http://www.dlvc-lab.net), South China China University of Technology.
 

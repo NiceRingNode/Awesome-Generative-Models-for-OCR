@@ -4,7 +4,7 @@
   <a href="http://dlvc-lab.net/lianwen/"> <img alt="SCUT DLVC Lab" src="https://img.shields.io/badge/SCUT-DLVC_Lab-A85882?logo=Academia&logoColor=hsl"></a>
   <a href="https://arxiv.org/abs/2507.15085"> <img alt="Static Badge" src="https://img.shields.io/badge/arXiv-2507.15085-%23CE0000?logo=arXiv&logoColor=rgb&labelColor=gray"></a>
   <a href="https://huggingface.co/papers/2507.15085"> <img alt="Static Badge" src="https://img.shields.io/badge/HuggingFace-Paper-FFBF00?logo=HuggingFace&logoColor=rgb&labelColor=gray"></a>
-  <a href="./LICENSE"> <img alt="Static Badge" src="https://img.shields.io/badge/License-Apache2.0-EBE9E9?logo=GNUBash&logoColor=rgb&labelColor=006622"></a>
+  <a href="./LICENSE"> <img alt="Static Badge" src="https://img.shields.io/badge/License-Apache2.0-006622?logo=GNUBash&logoColor=rgb&labelColor=gray"></a>
 <p></p>
 
 <a href="https://arxiv.org/abs/2507.15085"> <b>Aesthetics is Cheap, Show me the Text: An Empirical Evaluation of State-of-the-Art Generative Models for OCR</b> </a>

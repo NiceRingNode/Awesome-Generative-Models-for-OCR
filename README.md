@@ -403,3 +403,6 @@ eeprzhang@mail.scut.edu.cn
 [Peirong Zhang](https://github.com/NiceRingNode), [Haowei Xu](https://github.com/shallweiwei), [Guitao Xu](https://github.com/guitaoxu).
 
 Copyright 2025, [Deep Learning and Vision Computing (DLVC) Lab](http://www.dlvc-lab.net), South China China University of Technology.
+
+## <div align="center" id="star">⭐Star History<!--omit in toc -->
+[![Star Rising](https://api.star-history.com/svg?repos=NiceRingNode/Awesome-Generative-Models-for-OCR&type=Timeline)](https://star-history.com/#NiceRingNode/Awesome-Generative-Models-for-OCR&Timeline)

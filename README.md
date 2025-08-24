@@ -13,7 +13,7 @@
 
 </div>
 
-This repository is about evaluating state-of-the-art image generators' generation and editing capability on various **Optical Character Recognition (OCR)** tasks, including both **closed-source** and **open-source** models. Currently, we have tested [GPT-4o](https://openai.com/index/introducing-4o-image-generation/), [Qwen-VLo](https://qwenlm.github.io/zh/blog/qwen-vlo/), [Qwen-Image](https://github.com/QwenLM/Qwen-Image), [Flux.1-Kontext-dev](https://huggingface.co/black-forest-labs/FLUX.1-Kontext-dev), [OmniGen2](https://github.com/VectorSpaceLab/OmniGen2), [BAGEL](https://github.com/ByteDance-Seed/Bagel) and [Janus-4o](https://huggingface.co/FreedomIntelligence/Janus-4o-7B). Except for the GPT-4o and Qwen-VLo, all other models are **open-source models**. The evaluation include **generating** multiple types of text images (handwritten notes, printed documents, poster, street signs, historical manuscript, etc.) and **editing** specific content of text images. We aim to understand the boundaries of SOTA image generation models applied to the specialized field of OCR, identify remaining challenges, and explore **how close we are to achieving AGI-level capabilities in this domain**.
+This repository is about evaluating state-of-the-art image generators' generation and editing capability on various **Optical Character Recognition (OCR)** tasks, including both **closed-source** and **open-source** models. Currently, we have evaluated [GPT-4o](https://openai.com/index/introducing-4o-image-generation/), [Qwen-VLo](https://qwenlm.github.io/zh/blog/qwen-vlo/), [Qwen-Image](https://github.com/QwenLM/Qwen-Image), [Flux.1-Kontext-dev](https://huggingface.co/black-forest-labs/FLUX.1-Kontext-dev), [OmniGen2](https://github.com/VectorSpaceLab/OmniGen2), [BAGEL](https://github.com/ByteDance-Seed/Bagel) and [Janus-4o](https://huggingface.co/FreedomIntelligence/Janus-4o-7B). Except for the GPT-4o and Qwen-VLo, all other models are **open-source models**. The evaluation include **generating** multiple types of text images (handwritten notes, printed documents, poster, street signs, historical manuscript, etc.) and **editing** specific content of text images. We aim to understand the boundaries of SOTA image generation models applied to the specialized field of OCR, identify remaining challenges, and explore **how close we are to achieving AGI-level capabilities in this domain**.
 
 > *This repository was formerly known as **GPT-4o-Image-Generation-for-OCR**, and included only the evaluation of image generation capabilities of GPT-4o. Now we are expanding our evaluation to more models, especially **open-source models.***
 
@@ -98,6 +98,8 @@ Welcome **🌟issues, PR, and stars🌟** for more comprehensive testing or join
 **Technical Characteristics:**
 
 Janus-4o nearly has no text rendering ability in terms of either English or Chinese text, potentially due to its small model size (7B). 
+
+For more detailed observations, please refer to our paper.
 
 ## <div align="center" id="content">:book:Content</div> <!-- omit in toc -->
 
@@ -475,6 +477,7 @@ Copyright 2025, [Deep Learning and Vision Computing (DLVC) Lab](http://www.dlvc-
 
 ## <div align="center" id="star">⭐Star History<!--omit in toc -->
 [![Star Rising](https://api.star-history.com/svg?repos=NiceRingNode/Awesome-Generative-Models-for-OCR&type=Timeline)](https://star-history.com/#NiceRingNode/Awesome-Generative-Models-for-OCR&Timeline)
+
 
 
 

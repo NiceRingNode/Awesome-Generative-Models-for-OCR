@@ -24,7 +24,7 @@ Welcome **🌟issues, PR, and stars🌟** for more comprehensive testing or join
 ### 📌Pinned
 
 - :tada: **[August 2025]** We have included the evaluation of [Qwen-Image](https://github.com/QwenLM/Qwen-Image), and the results will be soon upated to the paper.
-- 
+
 - :tada: **[July 2025]** Our [paper](https://arxiv.org/abs/2507.15085) is online at arXiv! Welcome citation and star if you found our work useful! :blush:
 
 - :fire: **[June 2025]** Expanded evaluation now includes various closed-source and **open-source** models!
@@ -475,5 +475,6 @@ Copyright 2025, [Deep Learning and Vision Computing (DLVC) Lab](http://www.dlvc-
 
 ## <div align="center" id="star">⭐Star History<!--omit in toc -->
 [![Star Rising](https://api.star-history.com/svg?repos=NiceRingNode/Awesome-Generative-Models-for-OCR&type=Timeline)](https://star-history.com/#NiceRingNode/Awesome-Generative-Models-for-OCR&Timeline)
+
 
 

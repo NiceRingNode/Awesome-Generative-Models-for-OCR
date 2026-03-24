@@ -1,4 +1,4 @@
-# <div align="center" id="awesome image generators">Awesome Generative Models for OCR🚀</div>
+# <div align="center" id="awesome image generators">OCRGenBench: A Comprehensive Benchmark for Evaluating OCR Generative Capabilities🚀</div>
 
 <div align="center">
   <a href="http://dlvc-lab.net/lianwen/"> <img alt="SCUT DLVC Lab" src="https://img.shields.io/badge/SCUT-DLVC_Lab-A85882?logo=Academia&logoColor=hsl"></a>

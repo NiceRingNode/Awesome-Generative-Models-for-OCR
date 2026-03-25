@@ -16,7 +16,7 @@
 
 </div>
 
-OCRGenBench is the most comprehensive benchmark to date for evaluating the OCR generative capabilities of generative models. It pioneers in the unification of T2I generation, text editing, and OCR-related image-to-image translation to universally reflect a model's visual text synthesis abilities, *i.e.*, OCR generative capabilities. The benchmark covers 5 common text categories and 33 OCR generative tasks, including 1,060 challenging, human-annotated samples with dense text, varied layouts, multiple aspect ratios, and bilingual content. We also design a unified metric OCRGenScore, assessing text accuracy, instruction following, visual quality, and structural consistency in visual text synthesis.
+**OCRGenBench** is the most comprehensive benchmark to date for evaluating the OCR generative capabilities of generative models. It pioneers in the unification of T2I generation, text editing, and OCR-related image-to-image translation to universally reflect a model's visual text synthesis abilities, *i.e.*, OCR generative capabilities. The benchmark covers 5 common text categories and 33 OCR generative tasks, including 1,060 challenging, human-annotated samples with dense text, varied layouts, multiple aspect ratios, and bilingual content. We also design a unified metric OCRGenScore, assessing text accuracy, instruction following, visual quality, and structural consistency in visual text synthesis.
 
 > *This repository was formerly known as **Awesome Generative Models for OCR**, and included only the empirical evaluation of image generation capabilities of 7 models. Now we expand empirical evaluation to a **benchmark** and an evaluation framework, facilitating reproducible evaluation on unlimited models.*
 
@@ -53,19 +53,19 @@ OCRGenBench includes 1,060 high quality, manually annotated samples, whose distr
 ![img](./asset/task1.png)
 
 ![img](./asset/task2.png)
-
+---
 > Performance across text categories
 
 ![img](./asset/category.png)
-
+---
 > Performance across different T2I generation tasks
 
 ![img](./asset/only_gen.png)
-
+---
 > Performance across different text editing tasks
 
 ![img](./asset/only_editing.png)
-
+---
 > Performance across different tasks in Chinese and English
 
 ![img](./asset/zh_en1.png)

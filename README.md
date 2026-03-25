@@ -9,10 +9,8 @@
 <img src="https://img.shields.io/github/stars/NiceRingNode/Awesome-Generative-Models-for-OCR?color=yellow" alt="Stars"> <img src="https://img.shields.io/github/forks/NiceRingNode/Awesome-Generative-Models-for-OCR?color=yellow" alt="Forks">
 
 <p align="center">
-    <img src="asset/logo.png" width="500">
+    <img src="asset/logo.png" width="450">
 </p>
-
-<a href="https://arxiv.org/abs/2507.15085"> <b>OCRGenBench: A Comprehensive Benchmark for Evaluating OCR Generative Capabilities</b> </a>
 
 </div>
 

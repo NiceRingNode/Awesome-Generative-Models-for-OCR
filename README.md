@@ -4,6 +4,7 @@
   <a href="http://dlvc-lab.net/lianwen/"> <img alt="SCUT DLVC Lab" src="https://img.shields.io/badge/SCUT-DLVC_Lab-A85882?logo=Academia&logoColor=hsl"></a>
   <a href="https://arxiv.org/abs/2507.15085"> <img alt="Static Badge" src="https://img.shields.io/badge/arXiv-2507.15085-%23CE0000?logo=arXiv&logoColor=rgb&labelColor=gray"></a>
   <a href="https://huggingface.co/papers/2507.15085"> <img alt="Static Badge" src="https://img.shields.io/badge/HuggingFace-Paper-FFBF00?logo=HuggingFace&logoColor=rgb&labelColor=gray"></a>
+  <a href="https://niceringnode.github.io/Awesome-Generative-Models-for-OCR/leaderboard/"> <img alt="Leaderboard" src="https://img.shields.io/badge/Leaderboard-Live-4C9AFF?logo=readthedocs&logoColor=white&labelColor=gray"></a>
   <a href="./LICENSE"> <img alt="Static Badge" src="https://img.shields.io/badge/License-Apache2.0-008844?logo=GNUBash&logoColor=rgb&labelColor=gray"></a>
 <p></p>
 <img src="https://img.shields.io/github/stars/NiceRingNode/Awesome-Generative-Models-for-OCR?color=yellow" alt="Stars"> <img src="https://img.shields.io/github/forks/NiceRingNode/Awesome-Generative-Models-for-OCR?color=yellow" alt="Forks">
@@ -22,9 +23,11 @@
 
 ### 📌Pinned
 
-- :tada: **[March 2026]​** We propose **OCRGenBench**, a comprehensive benchmark to evaluate multi-dimensional OCR generative capabilities (visual text synthesis capbilities).
+- :rocket: **[March 2026]** Our **online leaderboard** is now available: [OCRGenBench Leaderboard](https://niceringnode.github.io/Awesome-Generative-Models-for-OCR/leaderboard/).
 
-- :tada: **[August 2025]** We have included the evaluation of [Qwen-Image](https://github.com/QwenLM/Qwen-Image), and the results will be soon upated to the paper.
+- :tada: **[March 2026]​** We propose **OCRGenBench**, a comprehensive benchmark to evaluate multi-dimensional OCR generative capabilities (visual text synthesis capabilities).
+
+- :tada: **[August 2025]** We have included the evaluation of [Qwen-Image](https://github.com/QwenLM/Qwen-Image), and the results are updated to the paper.
 
 - :tada: **[July 2025]** Our [paper](https://arxiv.org/abs/2507.15085) is online at arXiv! Welcome citation and star if you found our work useful! :blush:
 

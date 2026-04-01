@@ -1,0 +1,2256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OCRGenBench Leaderboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2a7a6a;
+      --primary-light: #f0faf8;
+      --primary-mid: #b0d9d1;
+      --accent: #0d4d40;
+      --gold: #c9860a;
+      --silver: #8a96a8;
+      --bronze: #9a5828;
+      --bg: #f5f7fa;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --best: #1a6a58;
+      --second: #2e8a78;
+      --row-even: #fafafa;
+      --row-hover: #f0f9ff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: #ffffff;
+      color: #1e293b;
+      padding: 56px 24px 44px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .header-badge {
+      display: inline-block;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      color: #64748b;
+    }
+    .header-logo {
+      width: min(480px, 88vw);
+      margin: 0 auto 20px;
+      display: block;
+      border-radius: 14px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.10);
+    }
+    .header h1 {
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+      font-size: clamp(26px, 4vw, 52px);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      margin-bottom: 10px;
+      max-width: 860px;
+      margin-left: auto;
+      margin-right: auto;
+      color: #1e293b;
+    }
+    /* "OCRGenBench" gradient — same palette as the column header */
+    .title-gradient {
+      background: linear-gradient(90deg, #0ea5e9 0%, #22d3ee 42%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .header-subtitle {
+      font-size: 16px;
+      color: #64748b;
+      max-width: 680px;
+      margin: 0 auto 24px;
+    }
+    .header-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .header-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      color: #374151;
+      text-decoration: none;
+      border-radius: 8px;
+      padding: 7px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .header-links a:hover { background: #f1f5f9; border-color: #cbd5e1; }
+    .header-links a svg { width: 16px; height: 16px; fill: currentColor; }
+
+    /* ── Stats bar ── */
+    .stats-bar {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      padding: 20px 24px;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .stat-item {
+      background: #f8f9fa;
+      border: 1px solid #e9ecef;
+      border-radius: 12px;
+      padding: 16px 28px;
+      text-align: center;
+      min-width: 130px;
+    }
+    .stat-value {
+      font-size: 26px;
+      font-weight: 800;
+      color: #1e293b;
+      letter-spacing: -0.5px;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: #94a3b8;
+      text-transform: none;
+      letter-spacing: 0;
+      margin-top: 2px;
+    }
+
+    /* ── Main container ── */
+    .container { max-width: 1400px; margin: 0 auto; padding: 24px 16px; }
+
+    /* ── Info box ── */
+    .info-box {
+      background: white;
+      border-left: 4px solid var(--primary);
+      border-radius: 0 10px 10px 0;
+      padding: 14px 18px;
+      margin-bottom: 20px;
+      color: var(--text-light);
+      font-size: 13px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+    }
+    .info-box strong { color: var(--text); }
+
+    /* ── Tab navigation ── */
+    .tab-nav {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 16px;
+      background: white;
+      border-radius: 12px;
+      padding: 6px;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+      border: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      flex: 1;
+      min-width: 120px;
+      padding: 9px 16px;
+      border: none;
+      border-radius: 8px;
+      background: transparent;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-light);
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .tab-btn:hover { background: var(--primary-light); color: var(--primary); }
+    .tab-btn.active {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 2px 8px rgba(26,111,196,0.3);
+    }
+
+    /* ── Filters ── */
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .filter-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .filter-btn {
+      padding: 5px 13px;
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      background: white;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-light);
+      transition: all 0.2s;
+    }
+    .filter-btn:hover { border-color: var(--primary); color: var(--primary); }
+    .filter-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+
+    /* ── Table card ── */
+    .table-card {
+      background: white;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+    .table-scroll { overflow-x: auto; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    /* Group header rows */
+    .group-header td {
+      background: #f1f5f9 !important;
+      color: #475569;
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 6px 14px;
+      border-top: 1px solid var(--border);
+      position: relative;
+      z-index: 4;
+    }
+
+    thead th {
+      background: #1a5a4a;
+      color: white;
+      padding: 11px 10px;
+      font-weight: 600;
+      font-size: 12px;
+      white-space: nowrap;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.15s;
+    }
+    thead th:hover { background: #134a3c; }
+    thead th .sort-icon { margin-left: 4px; opacity: 0.6; font-size: 10px; }
+    thead th.sorted { background: #0b3028; }
+    thead th.sorted .sort-icon { opacity: 1; }
+
+    /* Sub-header for grouped columns */
+    .th-group {
+      background: #0f4236 !important;
+      font-size: 11px;
+      letter-spacing: 0.3px;
+    }
+    .th-task {
+      background: #1a5a4a !important;
+      font-size: 11px;
+      border-left: 1px solid rgba(255,255,255,0.15);
+    }
+
+    tbody tr {
+      border-bottom: 1px solid #f1f5f9;
+      transition: background 0.15s;
+      background: #ffffff;
+    }
+    tbody tr:nth-child(even) { background: #ffffff; }
+    tbody tr:hover { background: var(--row-hover) !important; }
+    tbody tr.hidden { display: none; }
+
+    td {
+      padding: 9px 10px;
+      white-space: nowrap;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      background: transparent;
+    }
+    td:first-child { text-align: center; }
+    td.model-name { text-align: left; font-weight: 600; min-width: 150px; }
+
+    /* Rank column */
+    .rank-cell {
+      font-weight: 700;
+      font-size: 13px;
+      width: 44px;
+    }
+    .rank-1 { color: var(--gold); }
+    .rank-2 { color: var(--silver); }
+    .rank-3 { color: var(--bronze); }
+    /* Medal icons for top-3 — keep number, prepend medal */
+    .rank-cell.rank-1::before { content: '🥇 '; font-size: 15px; }
+    .rank-cell.rank-2::before { content: '🥈 '; font-size: 15px; }
+    .rank-cell.rank-3::before { content: '🥉 '; font-size: 15px; }
+
+    /* Score badges */
+    .score-best {
+      font-weight: 700;
+      color: var(--best);
+      position: relative;
+    }
+    .score-best::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--best);
+      border-radius: 1px;
+    }
+    .score-second {
+      font-weight: 600;
+      color: var(--second);
+      text-decoration: underline;
+      text-decoration-color: var(--second);
+    }
+
+    /* Tag chips */
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .tag-open { background: #e6f7ee; color: #1a7a42; }
+    .tag-closed { background: #fff0e6; color: #c44a00; }
+    .tag-unified { background: #ede8ff; color: #5a30b0; }
+    .tag-specialized { background: #fef3e2; color: #9a5a00; }
+
+    /* OCRGenScore highlight column */
+    .score-main {
+      font-weight: 800;
+      font-size: 14px;
+      color: var(--primary);
+      background: transparent !important;
+      position: relative;
+      z-index: 2;
+    }
+    /* Glow overlay: single absolutely-positioned div injected per table */
+    .table-scroll {
+      position: relative;
+    }
+    .col-glow {
+      position: absolute;
+      top: 0; bottom: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg,
+        rgba(34,211,238,0.09) 0%,
+        rgba(167,139,250,0.07) 50%,
+        rgba(34,211,238,0.07) 100%);
+      border-left: 1.5px solid rgba(34,211,238,0.40);
+      border-right: 1.5px solid rgba(167,139,250,0.35);
+      box-shadow:
+        0 0 18px 5px rgba(34,211,238,0.15),
+        0 0 36px 10px rgba(167,139,250,0.08);
+      z-index: 0;
+      transition: left 0.15s, width 0.15s;
+    }
+
+    /* OCRGenScore / OCRGenBench gradient text in column header */
+    .ocrgenscore-header {
+      background: linear-gradient(90deg, #7edcf5 0%, #22d3ee 42%, #c084fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* ── Legend ── */
+    .legend {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-size: 12px;
+      color: var(--text-light);
+      margin-top: 12px;
+      align-items: center;
+    }
+    .legend-item { display: flex; align-items: center; gap: 5px; }
+    .legend-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+    }
+
+    /* ── Category score bars ── */
+    .score-bar-cell { min-width: 80px; }
+    .score-bar-wrap { position: relative; }
+    .score-num { font-weight: 600; }
+
+    /* ── BibTeX ── */
+    .bibtex-box {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-top: 32px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+    .bibtex-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 18px;
+      background: var(--primary-light);
+      border-bottom: 1px solid var(--border);
+    }
+    .bibtex-title {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--primary);
+      letter-spacing: 0.3px;
+    }
+    .copy-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 5px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .copy-btn:hover { background: var(--accent); }
+    .bibtex-code {
+      font-family: 'JetBrains Mono', 'SFMono-Regular', 'Cascadia Code', Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      padding: 18px 20px;
+      color: var(--text);
+      background: #fafcfb;
+      overflow-x: auto;
+      margin: 0;
+    }
+
+    /* ── Example showcase ── */
+    .example-section {
+      background: white;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 16px;
+      text-align: center;
+    }
+    .example-section h2 {
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+    .example-img {
+      max-width: min(1200px, 96vw);
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+      border: 1px solid var(--border);
+      display: block;
+      margin: 0 auto;
+    }
+    .example-desc {
+      max-width: min(1200px, 96vw);
+      margin: 20px auto 0;
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--text-light);
+      text-align: left;
+    }
+    .example-desc strong { color: var(--text); }
+    .example-desc em { color: var(--primary); font-style: normal; font-weight: 600; }
+
+    /* ── Submit Section ── */
+    .submit-section {
+      background: #f8fafc;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 48px 24px;
+    }
+    .submit-section h2 {
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+      text-align: center;
+    }
+    .submit-subtitle {
+      text-align: center;
+      color: var(--text-light);
+      font-size: 14px;
+      margin-bottom: 28px;
+    }
+    .submit-card {
+      max-width: min(900px, 96vw);
+      margin: 0 auto;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      overflow: hidden;
+    }
+    .submit-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+      background: #f8fafc;
+    }
+    .submit-tab {
+      flex: 1;
+      padding: 11px 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-light);
+      background: none;
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.2px;
+      transition: color 0.15s, background 0.15s;
+      white-space: nowrap;
+    }
+    .submit-tab.active {
+      color: var(--primary);
+      background: white;
+      border-bottom: 2px solid var(--primary);
+      margin-bottom: -1px;
+    }
+    .submit-tab .tab-badge {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      border-radius: 20px;
+      font-size: 10px;
+      padding: 1px 6px;
+      margin-left: 4px;
+      vertical-align: middle;
+      font-weight: 700;
+      opacity: 0.75;
+    }
+    .submit-tab.active .tab-badge { opacity: 1; }
+    .submit-body {
+      padding: 24px 28px 28px;
+    }
+    .upload-zone {
+      border: 2px dashed #cbd5e1;
+      border-radius: 10px;
+      padding: 32px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      position: relative;
+    }
+    .upload-zone:hover, .upload-zone.drag-over {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+    .upload-zone input[type=file] {
+      position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
+    }
+    .upload-icon {
+      font-size: 36px;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .upload-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .upload-hint {
+      font-size: 12px;
+      color: var(--text-light);
+    }
+    .upload-hint a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .upload-hint a:hover { text-decoration: underline; }
+    .file-info {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      background: #f0faf8;
+      border: 1px solid #b0d9d1;
+      border-radius: 8px;
+      margin-top: 12px;
+      font-size: 13px;
+      color: var(--text);
+    }
+    .file-info.show { display: flex; }
+    .file-info-name { font-weight: 600; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .file-info-size { color: var(--text-light); flex-shrink: 0; }
+    .btn-clear-file {
+      background: none; border: none; cursor: pointer; color: #94a3b8; font-size: 16px; padding: 0 2px; line-height: 1;
+    }
+    .btn-clear-file:hover { color: #ef4444; }
+    .preview-wrap {
+      display: none;
+      margin-top: 16px;
+    }
+    .preview-wrap.show { display: block; }
+    .preview-wrap h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-light);
+      margin-bottom: 8px;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+    .preview-scroll {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      max-height: 240px;
+      overflow-y: auto;
+    }
+    .preview-scroll table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    .preview-scroll th {
+      background: #0b3028;
+      color: #7edcf5;
+      padding: 7px 10px;
+      font-weight: 600;
+      white-space: nowrap;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+    .preview-scroll td {
+      padding: 6px 10px;
+      border-bottom: 1px solid #f1f5f9;
+      white-space: nowrap;
+      color: var(--text);
+    }
+    .preview-scroll tr:nth-child(even) td { background: #fafafa; }
+    .preview-error {
+      display: none;
+      margin-top: 10px;
+      padding: 10px 14px;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 8px;
+      color: #dc2626;
+      font-size: 13px;
+    }
+    .preview-error.show { display: block; }
+    .submit-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+    .btn-submit {
+      flex: 1;
+      min-width: 160px;
+      padding: 11px 20px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, opacity 0.15s;
+      opacity: 0.45;
+      pointer-events: none;
+    }
+    .btn-submit.ready {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .btn-submit.ready:hover { background: var(--accent); }
+    /* Permanently disabled state — overrides .ready */
+    .btn-submit[disabled] {
+      opacity: 0.38 !important;
+      pointer-events: none !important;
+      cursor: not-allowed !important;
+    }
+    .coming-soon-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.25);
+      border-radius: 10px;
+      font-size: 10px;
+      padding: 1px 7px;
+      letter-spacing: 0.4px;
+      vertical-align: middle;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .btn-template {
+      padding: 11px 18px;
+      background: white;
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-template:hover { background: var(--primary-light); }
+    .submit-note {
+      margin-top: 14px;
+      font-size: 12px;
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+    .submit-note a { color: var(--primary); text-decoration: none; }
+    .submit-note a:hover { text-decoration: underline; }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      padding: 20px;
+      color: var(--text-light);
+      font-size: 12px;
+      border-top: 1px solid var(--border);
+      margin-top: 0;
+    }
+    .footer a { color: var(--primary); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      table { font-size: 11px; }
+      td, thead th { padding: 7px 6px; }
+      .header h1 { font-size: 24px; }
+      .stat-value { font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════ HEADER ══════════════════════════════ -->
+<div class="header">
+  <div class="header-badge">Leaderboard</div>
+  <h1><span class="title-gradient">OCRGenBench</span>: A Comprehensive Benchmark for Evaluating OCR Generative Capabilities</h1>
+  <div class="header-links">
+    <a href="https://github.com/NiceRingNode/Awesome-Generative-Models-for-OCR" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.04c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23.96-.27 1.99-.4 3.01-.4 1.02 0 2.05.14 3.01.4 2.29-1.55 3.29-1.23 3.29-1.23.66 1.65.24 2.87.12 3.17.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.69.82.58C20.56 21.8 24 17.3 24 12 24 5.37 18.63 0 12 0z"/></svg>
+      Code &amp; Data
+    </a>
+    <!-- arXiv logo (Simple Icons) -->
+    <a href="https://arxiv.org/abs/2507.15085" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor" height="16" style="width:16px;flex-shrink:0"><path d="M3.8423 0a1.0037 1.0037 0 0 0-.922.6078c-.1536.3687-.0438.6275.2938 1.1113l6.9185 8.3597-1.0223 1.1058a1.0393 1.0393 0 0 0 .003 1.4229l1.2292 1.3135-5.4391 6.4444c-.2803.299-.4538.823-.2971 1.1986a1.0253 1.0253 0 0 0 .9585.635.9133.9133 0 0 0 .6891-.3405l5.783-6.126 7.4902 8.0051a.8527.8527 0 0 0 .6835.2597.9575.9575 0 0 0 .8777-.6138c.1577-.377-.017-.7502-.306-1.1407l-7.0518-8.3418 1.0632-1.13a.9626.9626 0 0 0 .0089-1.3165L4.6336.4639s-.3733-.4535-.768-.463zm0 .272h.0166c.2179.0052.4874.2715.5644.3639l.005.006.0052.0055 10.169 10.9905a.6915.6915 0 0 1-.0072.945l-1.0666 1.133-1.4982-1.7724-8.5994-10.39c-.3286-.472-.352-.6183-.2592-.841a.7307.7307 0 0 1 .6704-.4401Zm14.341 1.5701a.877.877 0 0 0-.6554.2418l-5.6962 6.1584 1.6944 1.8319 5.3089-6.5138c.3251-.4335.479-.6603.3247-1.0292a1.1205 1.1205 0 0 0-.9763-.689zm-7.6557 12.2823 1.3186 1.4135-5.7864 6.1295a.6494.6494 0 0 1-.4959.26.7516.7516 0 0 1-.706-.4669c-.1119-.2682.0359-.6864.2442-.9083l.0051-.0055.0047-.0055z"/></svg>
+      arXiv
+    </a>
+    <!-- HuggingFace logo (Simple Icons) -->
+    <a href="https://huggingface.co" target="_blank">
+      <svg viewBox="0 0 24 24" fill="#FFD21E" height="17" style="width:17px;flex-shrink:0"><path d="M12.025 1.13c-5.77 0-10.449 4.647-10.449 10.378 0 1.112.178 2.181.503 3.185.064-.222.203-.444.416-.577a.96.96 0 0 1 .524-.15c.293 0 .584.124.84.284.278.173.48.408.71.694.226.282.458.611.684.951v-.014c.017-.324.106-.622.264-.874s.403-.487.762-.543c.3-.047.596.06.787.203s.31.313.4.467c.15.257.212.468.233.542.01.026.653 1.552 1.657 2.54.616.605 1.01 1.223 1.082 1.912.055.537-.096 1.059-.38 1.572.637.121 1.294.187 1.967.187.657 0 1.298-.063 1.921-.178-.287-.517-.44-1.041-.384-1.581.07-.69.465-1.307 1.081-1.913 1.004-.987 1.647-2.513 1.657-2.539.021-.074.083-.285.233-.542.09-.154.208-.323.4-.467a1.08 1.08 0 0 1 .787-.203c.359.056.604.29.762.543s.247.55.265.874v.015c.225-.34.457-.67.683-.952.23-.286.432-.52.71-.694.257-.16.547-.284.84-.285a.97.97 0 0 1 .524.151c.228.143.373.388.43.625l.006.04a10.3 10.3 0 0 0 .534-3.273c0-5.731-4.678-10.378-10.449-10.378M8.327 6.583a1.5 1.5 0 0 1 .713.174 1.487 1.487 0 0 1 .617 2.013c-.183.343-.762-.214-1.102-.094-.38.134-.532.914-.917.71a1.487 1.487 0 0 1 .69-2.803m7.486 0a1.487 1.487 0 0 1 .689 2.803c-.385.204-.536-.576-.916-.71-.34-.12-.92.437-1.103.094a1.487 1.487 0 0 1 .617-2.013 1.5 1.5 0 0 1 .713-.174m-10.68 1.55a.96.96 0 1 1 0 1.921.96.96 0 0 1 0-1.92m13.838 0a.96.96 0 1 1 0 1.92.96.96 0 0 1 0-1.92M8.489 11.458c.588.01 1.965 1.157 3.572 1.164 1.607-.007 2.984-1.155 3.572-1.164.196-.003.305.12.305.454 0 .886-.424 2.328-1.563 3.202-.22-.756-1.396-1.366-1.63-1.32q-.011.001-.02.006l-.044.026-.01.008-.03.024q-.018.017-.035.036l-.032.04a1 1 0 0 0-.058.09l-.014.025q-.049.088-.11.19a1 1 0 0 1-.083.116 1.2 1.2 0 0 1-.173.18q-.035.029-.075.058a1.3 1.3 0 0 1-.251-.243 1 1 0 0 1-.076-.107c-.124-.193-.177-.363-.337-.444-.034-.016-.104-.008-.2.022q-.094.03-.216.087-.06.028-.125.063l-.13.074q-.067.04-.136.086a3 3 0 0 0-.135.096 3 3 0 0 0-.26.219 2 2 0 0 0-.12.121 2 2 0 0 0-.106.128l-.002.002a2 2 0 0 0-.09.132l-.001.001a1.2 1.2 0 0 0-.105.212q-.013.036-.024.073c-1.139-.875-1.563-2.317-1.563-3.203 0-.334.109-.457.305-.454m.836 10.354c.824-1.19.766-2.082-.365-3.194-1.13-1.112-1.789-2.738-1.789-2.738s-.246-.945-.806-.858-.97 1.499.202 2.362c1.173.864-.233 1.45-.685.64-.45-.812-1.683-2.896-2.322-3.295s-1.089-.175-.938.647 2.822 2.813 2.562 3.244-1.176-.506-1.176-.506-2.866-2.567-3.49-1.898.473 1.23 2.037 2.16c1.564.932 1.686 1.178 1.464 1.53s-3.675-2.511-4-1.297c-.323 1.214 3.524 1.567 3.287 2.405-.238.839-2.71-1.587-3.216-.642-.506.946 3.49 2.056 3.522 2.064 1.29.33 4.568 1.028 5.713-.624m5.349 0c-.824-1.19-.766-2.082.365-3.194 1.13-1.112 1.789-2.738 1.789-2.738s.246-.945.806-.858.97 1.499-.202 2.362c-1.173.864.233 1.45.685.64.451-.812 1.683-2.896 2.322-3.295s1.089-.175.938.647-2.822 2.813-2.562 3.244 1.176-.506 1.176-.506 2.866-2.567 3.49-1.898-.473 1.23-2.037 2.16c-1.564.932-1.686 1.178-1.464 1.53s3.675-2.511 4-1.297c.323 1.214-3.524 1.567-3.287 2.405.238.839 2.71-1.587 3.216-.642.506.946-3.49 2.056-3.522 2.064-1.29.33-4.568 1.028-5.713-.624"/></svg>
+      HuggingFace
+    </a>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ STATS BAR ══════════════════════════════ -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-value">19</div>
+    <div class="stat-label">Models evaluated</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">33</div>
+    <div class="stat-label">OCR Generative tasks</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">5</div>
+    <div class="stat-label">Text categories</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">1,060</div>
+    <div class="stat-label">Human-annotated samples</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">2</div>
+    <div class="stat-label">Languages (EN &amp; ZH)</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ MAIN CONTENT ══════════════════════════════ -->
+<div class="container">
+  <!-- ── Tabs ── -->
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('overall')">By Task Category (Main)</button>
+    <button class="tab-btn" onclick="switchTab('category')">By Text Category</button>
+    <button class="tab-btn" onclick="switchTab('t2i')">T2I Generation</button>
+    <button class="tab-btn" onclick="switchTab('editing')">Text Editing</button>
+  </div>
+
+  <!-- ════════════════ TAB 1: OVERALL ════════════════ -->
+  <div id="tab-overall" class="tab-content active">
+
+    <div class="filter-bar">
+      <div class="filter-group">
+        <span class="filter-label">Source:</span>
+        <button class="filter-btn active" onclick="setFilter('source','all', this)">All</button>
+        <button class="filter-btn" onclick="setFilter('source','open', this)">Open-Source</button>
+        <button class="filter-btn" onclick="setFilter('source','closed', this)">Closed-Source</button>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">Type:</span>
+        <button class="filter-btn active" onclick="setFilter('type','all', this)">All</button>
+        <button class="filter-btn" onclick="setFilter('type','unified', this)">Unified U&amp;G</button>
+        <button class="filter-btn" onclick="setFilter('type','specialized', this)">Specialized Gen.</button>
+      </div>
+    </div>
+
+    <div class="table-card">
+      <div class="table-scroll">
+        <table id="overall-table" data-glow-col="6">
+          <thead>
+            <tr>
+              <th onclick="sortTable('overall-table',0)" title="Rank">#<span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('overall-table',1)" style="text-align:left;min-width:155px">Model<span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('overall-table',2)">Date<span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('overall-table',3)">Type<span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('overall-table',4)">Source<span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('overall-table',5)">Params<span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('overall-table',6)" class="th-group" style="min-width:90px"><span class="ocrgenscore-header">OCRGenScore</span> ↑<span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('overall-table',7)" class="th-task">T2I VIE ↑<span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('overall-table',8)" class="th-task">T2I AR ↑<span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('overall-table',9)" class="th-task">Edit 1-LPIPS ↑<span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('overall-table',10)" class="th-task">Edit AR ↑<span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('overall-table',11)" class="th-task">Dewarping DD ↑<span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('overall-table',12)" class="th-task">Deshadow ↑<span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('overall-table',13)" class="th-task">Deblur ↑<span class="sort-icon">↕</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- data-source: open/closed  data-type: unified/specialized -->
+
+            <!-- ── Closed-Source ── -->
+            <tr class="group-header"><td colspan="14">Closed-Source Models</td></tr>
+
+            <tr data-source="closed" data-type="unified">
+              <td class="rank-cell rank-1">1</td>
+              <td class="model-name">Nano Banana Pro</td>
+              <td>2025.11</td>
+              <td><span class="tag tag-unified">Unified U&amp;G</span></td>
+              <td><span class="tag tag-closed">Closed</span></td>
+              <td>–</td>
+              <td class="score-main score-best">77.19</td>
+              <td>92.24</td>
+              <td class="score-best">76.96</td>
+              <td>85.22</td>
+              <td class="score-best">71.46</td>
+              <td class="score-best">42.52</td>
+              <td class="score-best">85.93</td>
+              <td>61.37</td>
+            </tr>
+
+            <tr data-source="closed" data-type="specialized">
+              <td class="rank-cell rank-3">3</td>
+              <td class="model-name">Seedream 4.5</td>
+              <td>2025.12</td>
+              <td><span class="tag tag-specialized">Specialized</span></td>
+              <td><span class="tag tag-closed">Closed</span></td>
+              <td>–</td>
+              <td class="score-main">63.35</td>
+              <td class="score-second">90.45</td>
+              <td class="score-second">74.09</td>
+              <td>65.75</td>
+              <td>45.19</td>
+              <td>23.85</td>
+              <td>57.99</td>
+              <td>55.09</td>
+            </tr>
+
+            <tr data-source="closed" data-type="specialized">
+              <td class="rank-cell">9</td>
+              <td class="model-name">GPT Image 1.5</td>
+              <td>2025.03</td>
+              <td><span class="tag tag-specialized">Specialized</span></td>
+              <td><span class="tag tag-closed">Closed</span></td>
+              <td>–</td>
+              <td class="score-main">54.00</td>
+              <td class="score-best">93.41</td>
+              <td>68.72</td>
+              <td>57.36</td>
+              <td>42.73</td>
+              <td>29.55</td>
+              <td>36.10</td>
+              <td>32.09</td>
+            </tr>
+
+            <!-- ── Open-Source Unified ── -->
+            <tr class="group-header"><td colspan="14">Open-Source · Unified Understanding &amp; Generation</td></tr>
+
+            <tr data-source="open" data-type="unified">
+              <td class="rank-cell">5</td>
+              <td class="model-name">BAGEL</td>
+              <td>2025.05</td>
+              <td><span class="tag tag-unified">Unified U&amp;G</span></td>
+              <td><span class="tag tag-open">Open</span></td>
+              <td>14B</td>
+              <td class="score-main">59.11</td>
+              <td>57.08</td>
+              <td>14.95</td>
+              <td class="score-best">87.03</td>
+              <td>15.07</td>
+              <td>20.80</td>
+              <td class="score-second">76.18</td>
+              <td class="score-best">76.27</td>
+            </tr>
+
+            <tr data-source="open" data-type="unified">
+              <td class="rank-cell">8</td>
+              <td class="model-name">OmniGen2</td>
+              <td>2025.06</td>
+              <td><span class="tag tag-unified">Unified U&amp;G</span></td>
+              <td><span class="tag tag-open">Open</span></td>
+              <td>7B</td>
+              <td class="score-main">54.24</td>
+              <td>59.96</td>
+              <td>26.37</td>
+              <td>65.83</td>
+              <td>13.82</td>
+              <td>21.21</td>
+              <td>64.26</td>
+              <td>65.17</td>
+            </tr>
+
+            <tr data-source="open" data-type="unified">
+              <td class="rank-cell">11</td>
+              <td class="model-name">InternVL-U</td>
+              <td>2026.03</td>
+              <td><span class="tag tag-unified">Unified U&amp;G</span></td>
+              <td><span class="tag tag-open">Open</span></td>
+              <td>4B</td>
+              <td class="score-main">43.64</td>
+              <td>66.25</td>
+              <td>44.17</td>
+              <td>53.87</td>
+              <td>17.21</td>
+              <td>28.69</td>
+              <td>49.45</td>
+              <td>30.80</td>
+            </tr>
+
+            <tr data-source="open" data-type="unified">
+              <td class="rank-cell">13</td>
+              <td class="model-name">Janus-4o</td>
+              <td>2025.06</td>
+              <td><span class="tag tag-unified">Unified U&amp;G</span></td>
+              <td><span class="tag tag-open">Open</span></td>
+              <td>7B</td>
+              <td class="score-main">29.58</td>
+              <td>53.59</td>
+              <td>13.63</td>
+              <td>45.53</td>
+              <td>5.80</td>
+              <td>24.88</td>
+              <td>34.28</td>
+              <td>39.33</td>
+            </tr>
+
+            <tr data-source="open" data-type="unified">
+              <td class="rank-cell">15</td>
+              <td class="model-name">ILLUME+</td>
+              <td>2025.04</td>
+              <td><span class="tag tag-unified">Unified U&amp;G</span></td>
+              <td><span class="tag tag-open">Open</span></td>
+              <td>7B</td>
+              <td class="score-main">28.39</td>
+              <td>43.15</td>
+              <td>5.46</td>
+              <td>42.71</td>
+              <td>2.68</td>
+              <td>27.21</td>
+              <td>42.78</td>
+              <td>38.28</td>
+            </tr>
+
+            <!-- ── Open-Source Specialized ── -->
+            <tr class="group-header"><td colspan="14">Open-Source · Specialized Generation</td></tr>
+
+            <tr data-source="open" data-type="specialized">
+              <td class="rank-cell rank-2">2</td>
+              <td class="model-name">FLUX.2-dev</td>
+              <td>2025.11</td>
+              <td><span class="tag tag-specialized">Specialized</span></td>
+              <td><span class="tag tag-open">Open</span></td>
+              <td>32B</td>
+              <td class="score-main score-second">70.19</td>
+              <td>88.88</td>
+              <td>66.37</td>
+              <td>83.92</td>
+              <td>41.56</td>
+              <td class="score-second">41.41</td>
+              <td>67.97</td>
+              <td class="score-second">71.87</td>
+            </tr>
+
+            <tr data-source="open" data-type="specialized">
+              <td class="rank-cell rank-3">4</td>
+              <td class="model-name">LongCat-Image</td>
+              <td>2025.12</td>
+              <td><span class="tag tag-specialized">Specialized</span></td>
+              <td><span class="tag tag-open">Open</span></td>
+              <td>6B</td>
+              <td class="score-main">66.39</td>
+              <td>84.02</td>
+              <td>67.51</td>
+              <td class="score-second">85.56</td>
+              <td class="score-second">51.53</td>
+              <td>28.04</td>
+              <td>72.12</td>
+              <td>56.62</td>
+            </tr>
+
+            <tr data-source="open" data-type="specialized">
+              <td class="rank-cell">6</td>
+              <td class="model-name">FLUX.2-Klein-9B</td>
+              <td>2026.01</td>
+              <td><span class="tag tag-specialized">Specialized</span></td>
+              <td><span class="tag tag-open">Open</span></td>
+              <td>9B</td>
+              <td class="score-main">59.28</td>
+              <td>82.84</td>
+              <td>39.63</td>
+              <td>81.18</td>
+              <td>31.10</td>
+              <td>24.44</td>
+              <td>57.98</td>
+              <td>56.74</td>
+            </tr>
+
+            <tr data-source="open" data-type="specialized">
+              <td class="rank-cell">7</td>
+              <td class="model-name">Qwen-Image</td>
+              <td>2025.12</td>
+              <td><span class="tag tag-specialized">Specialized</span></td>
+              <td><span class="tag tag-open">Open</span></td>
+              <td>20B</td>
+              <td class="score-main">56.29</td>
+              <td>84.41</td>
+              <td>65.21</td>
+              <td>65.65</td>
+              <td>41.20</td>
+              <td>25.14</td>
+              <td>50.05</td>
+              <td>38.81</td>
+            </tr>
+
+            <tr data-source="open" data-type="specialized">
+              <td class="rank-cell">10</td>
+              <td class="model-name">GLM-Image</td>
+              <td>2026.01</td>
+              <td><span class="tag tag-specialized">Specialized</span></td>
+              <td><span class="tag tag-open">Open</span></td>
+              <td>9B</td>
+              <td class="score-main">50.12</td>
+              <td>83.53</td>
+              <td>69.36</td>
+              <td>70.97</td>
+              <td>21.54</td>
+              <td>24.99</td>
+              <td>43.15</td>
+              <td>41.13</td>
+            </tr>
+
+            <tr data-source="open" data-type="specialized">
+              <td class="rank-cell">12</td>
+              <td class="model-name">FLUX.1-Kontext-dev</td>
+              <td>2025.06</td>
+              <td><span class="tag tag-specialized">Specialized</span></td>
+              <td><span class="tag tag-open">Open</span></td>
+              <td>12B</td>
+              <td class="score-main">36.51</td>
+              <td>39.58</td>
+              <td>21.69</td>
+              <td>53.76</td>
+              <td>15.13</td>
+              <td>24.30</td>
+              <td>30.36</td>
+              <td>30.80</td>
+            </tr>
+
+            <tr data-source="open" data-type="specialized">
+              <td class="rank-cell">14</td>
+              <td class="model-name">SD-3.5-Large</td>
+              <td>2024.10</td>
+              <td><span class="tag tag-specialized">Specialized</span></td>
+              <td><span class="tag tag-open">Open</span></td>
+              <td>8B</td>
+              <td class="score-main">29.53</td>
+              <td>50.94</td>
+              <td>27.51</td>
+              <td>47.43</td>
+              <td>5.77</td>
+              <td>30.99</td>
+              <td>29.07</td>
+              <td>32.64</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="legend">
+      <span class="legend-item"><span class="legend-dot" style="background:var(--gold)"></span> 1st place</span>
+      <span class="legend-item"><span class="legend-dot" style="background:var(--silver)"></span> 2nd place</span>
+      <span class="legend-item"><span class="legend-dot" style="background:var(--bronze)"></span> 3rd place</span>
+      <span style="color:var(--best);font-weight:700">Bold</span> = best per column &nbsp;|&nbsp;
+      <span style="color:var(--second);text-decoration:underline">Underline</span> = 2nd best &nbsp;|&nbsp;
+      T2I VIE = VIEScore for T2I tasks &nbsp;|&nbsp; Edit 1-LPIPS ↑ = 1 − LPIPS &nbsp;|&nbsp; DD = Document-Distortion metric
+    </div>
+  </div>
+
+  <!-- ════════════════ TAB 2: BY TEXT CATEGORY ════════════════ -->
+  <div id="tab-category" class="tab-content">
+
+    <div class="filter-bar">
+      <div class="filter-group">
+        <span class="filter-label">Source:</span>
+        <button class="filter-btn active" onclick="setFilter2('source','all', this)">All</button>
+        <button class="filter-btn" onclick="setFilter2('source','open', this)">Open-Source</button>
+        <button class="filter-btn" onclick="setFilter2('source','closed', this)">Closed-Source</button>
+      </div>
+    </div>
+
+    <div class="table-card">
+      <div class="table-scroll">
+        <table id="category-table">
+          <thead>
+            <tr>
+              <th rowspan="2" onclick="sortTable('category-table',0)">#<span class="sort-icon">↕</span></th>
+              <th rowspan="2" onclick="sortTable('category-table',1)" style="text-align:left;min-width:155px">Model<span class="sort-icon">↕</span></th>
+              <th colspan="2" style="background:#0b3028;text-align:center;font-size:11px;border-left:1px solid rgba(255,255,255,0.2)">Document ↑</th>
+              <th rowspan="2" onclick="sortTable('category-table',4)" class="th-task">Handwriting ↑<span class="sort-icon">↕</span></th>
+              <th rowspan="2" onclick="sortTable('category-table',5)" class="th-task">Scene Text ↑<span class="sort-icon">↕</span></th>
+              <th rowspan="2" onclick="sortTable('category-table',6)" class="th-task">Artistic Text ↑<span class="sort-icon">↕</span></th>
+              <th colspan="3" style="background:#0b3028;text-align:center;font-size:11px;border-left:1px solid rgba(255,255,255,0.2)">Layout-Rich Text ↑</th>
+            </tr>
+            <tr>
+              <th onclick="sortTable('category-table',2)" class="th-task" style="border-left:1px solid rgba(255,255,255,0.15)">Modern<span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('category-table',3)" class="th-task">Historical<span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('category-table',7)" class="th-task" style="border-left:1px solid rgba(255,255,255,0.15)">Slide<span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('category-table',8)" class="th-task">Poster<span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('category-table',9)" class="th-task">Layout-Aware<span class="sort-icon">↕</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="group-header"><td colspan="10">Closed-Source Models</td></tr>
+
+            <tr data-source2="closed">
+              <td class="rank-cell rank-1">1</td>
+              <td class="model-name">Nano Banana Pro</td>
+              <td class="score-best">70.87</td>
+              <td>71.37</td>
+              <td class="score-second">78.28</td>
+              <td class="score-best">84.67</td>
+              <td class="score-second">89.11</td>
+              <td class="score-best">92.86</td>
+              <td>80.85</td>
+              <td class="score-best">94.43</td>
+            </tr>
+            <tr data-source2="closed">
+              <td class="rank-cell rank-3">3</td>
+              <td class="model-name">Seedream 4.5</td>
+              <td>48.74</td>
+              <td>61.82</td>
+              <td>60.30</td>
+              <td>70.34</td>
+              <td class="score-best">89.07</td>
+              <td>77.20</td>
+              <td>74.23</td>
+              <td>74.75</td>
+            </tr>
+            <tr data-source2="closed">
+              <td class="rank-cell">9</td>
+              <td class="model-name">GPT Image 1.5</td>
+              <td>36.31</td>
+              <td>56.47</td>
+              <td>57.16</td>
+              <td>60.37</td>
+              <td>86.26</td>
+              <td>80.67</td>
+              <td>63.21</td>
+              <td class="score-second">91.73</td>
+            </tr>
+
+            <tr class="group-header"><td colspan="10">Open-Source · Unified Understanding &amp; Generation</td></tr>
+
+            <tr data-source2="open">
+              <td class="rank-cell">5</td>
+              <td class="model-name">BAGEL</td>
+              <td class="score-second">56.33</td>
+              <td>47.63</td>
+              <td>55.47</td>
+              <td>63.83</td>
+              <td>40.25</td>
+              <td>47.79</td>
+              <td>44.91</td>
+              <td>54.15</td>
+            </tr>
+            <tr data-source2="open">
+              <td class="rank-cell">8</td>
+              <td class="model-name">OmniGen2</td>
+              <td>45.97</td>
+              <td>46.84</td>
+              <td>40.66</td>
+              <td>63.81</td>
+              <td>47.45</td>
+              <td>42.84</td>
+              <td>42.59</td>
+              <td>57.96</td>
+            </tr>
+            <tr data-source2="open">
+              <td class="rank-cell">11</td>
+              <td class="model-name">InternVL-U</td>
+              <td>36.83</td>
+              <td>29.96</td>
+              <td>47.58</td>
+              <td>49.94</td>
+              <td>57.94</td>
+              <td>52.56</td>
+              <td>41.60</td>
+              <td>69.88</td>
+            </tr>
+            <tr data-source2="open">
+              <td class="rank-cell">13</td>
+              <td class="model-name">Janus-4o</td>
+              <td>31.75</td>
+              <td>25.88</td>
+              <td>33.28</td>
+              <td>33.51</td>
+              <td>29.09</td>
+              <td>45.85</td>
+              <td>26.94</td>
+              <td>29.43</td>
+            </tr>
+            <tr data-source2="open">
+              <td class="rank-cell">15</td>
+              <td class="model-name">ILLUME+</td>
+              <td>33.87</td>
+              <td>19.48</td>
+              <td>32.55</td>
+              <td>36.05</td>
+              <td>13.40</td>
+              <td>34.90</td>
+              <td>21.57</td>
+              <td>5.48</td>
+            </tr>
+
+            <tr class="group-header"><td colspan="10">Open-Source · Specialized Generation</td></tr>
+
+            <tr data-source2="open">
+              <td class="rank-cell rank-2">2</td>
+              <td class="model-name">FLUX.2-dev</td>
+              <td class="score-best">60.17</td>
+              <td class="score-best">64.36</td>
+              <td class="score-best">69.75</td>
+              <td class="score-second">75.50</td>
+              <td>87.04</td>
+              <td class="score-second">80.17</td>
+              <td>70.68</td>
+              <td>80.52</td>
+            </tr>
+            <tr data-source2="open">
+              <td class="rank-cell rank-3">4</td>
+              <td class="model-name">LongCat-Image</td>
+              <td>54.79</td>
+              <td class="score-second">63.47</td>
+              <td class="score-best">70.92</td>
+              <td>72.21</td>
+              <td>85.95</td>
+              <td>79.04</td>
+              <td class="score-best">82.48</td>
+              <td>89.86</td>
+            </tr>
+            <tr data-source2="open">
+              <td class="rank-cell">6</td>
+              <td class="model-name">FLUX.2-Klein-9B</td>
+              <td>47.85</td>
+              <td>56.55</td>
+              <td>60.73</td>
+              <td>66.89</td>
+              <td>72.56</td>
+              <td>68.01</td>
+              <td>57.04</td>
+              <td>57.83</td>
+            </tr>
+            <tr data-source2="open">
+              <td class="rank-cell">7</td>
+              <td class="model-name">Qwen-Image</td>
+              <td>45.22</td>
+              <td>56.37</td>
+              <td>52.12</td>
+              <td>58.59</td>
+              <td>87.26</td>
+              <td>75.63</td>
+              <td>70.40</td>
+              <td>91.68</td>
+            </tr>
+            <tr data-source2="open">
+              <td class="rank-cell">10</td>
+              <td class="model-name">GLM-Image</td>
+              <td>41.42</td>
+              <td>62.62</td>
+              <td>57.83</td>
+              <td>49.74</td>
+              <td>68.66</td>
+              <td>66.84</td>
+              <td>64.12</td>
+              <td>73.74</td>
+            </tr>
+            <tr data-source2="open">
+              <td class="rank-cell">12</td>
+              <td class="model-name">FLUX.1-Kontext-dev</td>
+              <td>31.10</td>
+              <td>35.72</td>
+              <td>33.39</td>
+              <td>32.38</td>
+              <td>52.95</td>
+              <td>38.09</td>
+              <td>27.40</td>
+              <td>38.76</td>
+            </tr>
+            <tr data-source2="open">
+              <td class="rank-cell">14</td>
+              <td class="model-name">SD-3.5-Large</td>
+              <td>30.11</td>
+              <td>22.86</td>
+              <td>33.23</td>
+              <td>30.56</td>
+              <td>47.90</td>
+              <td>43.93</td>
+              <td>36.96</td>
+              <td>11.68</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════ TAB 3: T2I GENERATION ════════════════ -->
+  <div id="tab-t2i" class="tab-content">
+
+    <div class="info-box">
+      <strong>T2I Generation Subtasks</strong>: Text-to-Image generation tasks across multiple text categories.
+      OCRGenScore<sub>T2I</sub> = weighted average of VIEScore and Accuracy Rate (AR) across all T2I subtasks.
+      Models marked with * support only T2I generation (no image editing capabilities).
+    </div>
+
+    <div class="table-card">
+      <div class="table-scroll">
+        <table id="t2i-table" data-glow-col="2">
+          <thead>
+            <tr>
+              <th rowspan="2">#</th>
+              <th rowspan="2" style="text-align:left;min-width:160px">Model</th>
+              <th rowspan="2" class="th-group"><span class="ocrgenscore-header">OCRGenScore</span><sub style="color:#c084fc">T2I</sub> ↑</th>
+              <th colspan="2" style="background:#0b3028;text-align:center;font-size:11px;border-left:1px solid rgba(255,255,255,0.2)">Hist. Doc ↑</th>
+              <th colspan="2" style="background:#0b3028;text-align:center;font-size:11px;border-left:1px solid rgba(255,255,255,0.2)">Handwriting ↑</th>
+              <th colspan="2" style="background:#0b3028;text-align:center;font-size:11px;border-left:1px solid rgba(255,255,255,0.2)">Scene Text ↑</th>
+              <th colspan="2" style="background:#0b3028;text-align:center;font-size:11px;border-left:1px solid rgba(255,255,255,0.2)">Artistic Text ↑</th>
+              <th colspan="1" style="background:#0b3028;text-align:center;font-size:11px;border-left:1px solid rgba(255,255,255,0.2)">Slide ↑</th>
+              <th colspan="2" style="background:#0b3028;text-align:center;font-size:11px;border-left:1px solid rgba(255,255,255,0.2)">Poster ↑</th>
+            </tr>
+            <tr>
+              <th class="th-task" style="border-left:1px solid rgba(255,255,255,0.15)">VIE</th>
+              <th class="th-task">AR</th>
+              <th class="th-task" style="border-left:1px solid rgba(255,255,255,0.15)">VIE</th>
+              <th class="th-task">AR</th>
+              <th class="th-task" style="border-left:1px solid rgba(255,255,255,0.15)">VIE</th>
+              <th class="th-task">AR</th>
+              <th class="th-task" style="border-left:1px solid rgba(255,255,255,0.15)">VIE</th>
+              <th class="th-task">AR</th>
+              <th class="th-task" style="border-left:1px solid rgba(255,255,255,0.15)">VIE</th>
+              <th class="th-task" style="border-left:1px solid rgba(255,255,255,0.15)">VIE</th>
+              <th class="th-task">AR</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="group-header"><td colspan="14">Closed-Source Models</td></tr>
+            <tr>
+              <td class="rank-cell rank-1">1</td>
+              <td class="model-name">Nano Banana Pro</td>
+              <td class="score-main score-best">85.53</td>
+              <td>92.02</td><td>61.76</td>
+              <td>91.36</td><td>74.35</td>
+              <td>94.06</td><td>90.89</td>
+              <td>90.91</td><td>91.32</td>
+              <td>94.82</td>
+              <td>91.87</td><td>58.22</td>
+            </tr>
+            <tr>
+              <td class="rank-cell rank-2">2</td>
+              <td class="model-name">Seedream 4.5</td>
+              <td class="score-main score-second">83.83</td>
+              <td>89.60</td><td>53.38</td>
+              <td>89.48</td><td>53.92</td>
+              <td>90.81</td><td>84.58</td>
+              <td>90.98</td><td>95.42</td>
+              <td>90.72</td>
+              <td class="score-second">92.50</td><td>83.87</td>
+            </tr>
+            <tr>
+              <td class="rank-cell rank-3">3</td>
+              <td class="model-name">GPT Image 1.5</td>
+              <td class="score-main">82.63</td>
+              <td class="score-best">92.35</td><td>49.63</td>
+              <td class="score-best">94.10</td><td>67.74</td>
+              <td class="score-best">93.20</td><td>83.19</td>
+              <td class="score-second">92.37</td><td>77.29</td>
+              <td class="score-best">94.25</td>
+              <td class="score-best">93.62</td><td>59.43</td>
+            </tr>
+
+            <tr class="group-header"><td colspan="14">Open-Source · Unified Understanding &amp; Generation</td></tr>
+            <tr>
+              <td class="rank-cell">11</td><td class="model-name">InternVL-U</td>
+              <td class="score-main">58.44</td>
+              <td>58.26</td><td>10.27</td>
+              <td>56.66</td><td>40.59</td>
+              <td>69.78</td><td>80.09</td>
+              <td>83.89</td><td>46.83</td>
+              <td>76.11</td>
+              <td>—</td><td>—</td>
+            </tr>
+            <tr>
+              <td class="rank-cell">12</td><td class="model-name">OmniGen2</td>
+              <td class="score-main">45.58</td>
+              <td>73.25</td><td>18.98</td>
+              <td>59.34</td><td>24.48</td>
+              <td>63.12</td><td>32.71</td>
+              <td>58.37</td><td>24.57</td>
+              <td>48.42</td>
+              <td>72.77</td><td>12.08</td>
+            </tr>
+            <tr>
+              <td class="rank-cell">14</td><td class="model-name">Janus-4o</td>
+              <td class="score-main">38.79</td>
+              <td>72.78</td><td>10.01</td>
+              <td>49.22</td><td>14.59</td>
+              <td>53.66</td><td>15.70</td>
+              <td>42.48</td><td>19.20</td>
+              <td>62.31</td>
+              <td>62.30</td><td>0.07</td>
+            </tr>
+            <tr>
+              <td class="rank-cell">15</td><td class="model-name">BAGEL</td>
+              <td class="score-main">37.34</td>
+              <td>54.34</td><td>8.59</td>
+              <td>54.11</td><td>16.05</td>
+              <td>65.46</td><td>9.53</td>
+              <td>55.08</td><td>25.76</td>
+              <td>43.69</td>
+              <td>70.40</td><td>1.40</td>
+            </tr>
+            <tr>
+              <td class="rank-cell">17</td><td class="model-name">ILLUME+</td>
+              <td class="score-main">27.26</td>
+              <td>59.42</td><td>8.37</td>
+              <td>43.87</td><td>7.81</td>
+              <td>51.07</td><td>2.72</td>
+              <td>24.62</td><td>4.12</td>
+              <td>36.13</td>
+              <td>52.72</td><td>0.14</td>
+            </tr>
+            <tr>
+              <td class="rank-cell">18</td><td class="model-name">Show-o2</td>
+              <td class="score-main">19.44</td>
+              <td>28.71</td><td>5.01</td>
+              <td>25.83</td><td>11.26</td>
+              <td>24.79</td><td>5.47</td>
+              <td>35.14</td><td>23.67</td>
+              <td>20.07</td>
+              <td>33.22</td><td>0.07</td>
+            </tr>
+
+            <tr class="group-header"><td colspan="14">Open-Source · Specialized Generation</td></tr>
+            <tr>
+              <td class="rank-cell">4</td><td class="model-name">FLUX.2-dev</td>
+              <td class="score-main">79.28</td>
+              <td>85.59</td><td>31.41</td>
+              <td>81.89</td><td>29.94</td>
+              <td>79.47</td><td class="score-best">99.99</td>
+              <td>85.70</td><td>92.47</td>
+              <td>81.14</td>
+              <td>89.75</td><td>67.62</td>
+            </tr>
+            <tr>
+              <td class="rank-cell">5</td><td class="model-name">LongCat-Image</td>
+              <td class="score-main">78.92</td>
+              <td>82.91</td><td>42.03</td>
+              <td>78.30</td><td>51.74</td>
+              <td>87.47</td><td>95.99</td>
+              <td>88.55</td><td>88.05</td>
+              <td>83.82</td>
+              <td>88.41</td><td>75.96</td>
+            </tr>
+            <tr>
+              <td class="rank-cell">6</td><td class="model-name">GLM-Image</td>
+              <td class="score-main">77.95</td>
+              <td>79.85</td><td>60.99</td>
+              <td>77.95</td><td>64.16</td>
+              <td>88.51</td><td>82.17</td>
+              <td>88.64</td><td>75.77</td>
+              <td>78.70</td>
+              <td>90.49</td><td>69.48</td>
+            </tr>
+            <tr>
+              <td class="rank-cell">7</td><td class="model-name">Qwen-Image</td>
+              <td class="score-main">76.03</td>
+              <td>87.40</td><td>26.36</td>
+              <td>60.28</td><td>88.00</td>
+              <td>77.76</td><td>99.53</td>
+              <td>86.49</td><td class="score-best">95.47</td>
+              <td>85.91</td>
+              <td>84.32</td><td>58.30</td>
+            </tr>
+            <tr>
+              <td class="rank-cell">8</td><td class="model-name">Z-Image *</td>
+              <td class="score-main">74.46</td>
+              <td>66.22</td><td>57.31</td>
+              <td>68.52</td><td>72.78</td>
+              <td>75.87</td><td>93.08</td>
+              <td>77.29</td><td>89.80</td>
+              <td>66.44</td>
+              <td>79.48</td><td>77.30</td>
+            </tr>
+            <tr>
+              <td class="rank-cell">9</td><td class="model-name">Ovis-Image *</td>
+              <td class="score-main">69.02</td>
+              <td>52.45</td><td>52.75</td>
+              <td>55.30</td><td>54.00</td>
+              <td>76.67</td><td>85.82</td>
+              <td>77.38</td><td>92.70</td>
+              <td>57.14</td>
+              <td>75.97</td><td class="score-best">90.87</td>
+            </tr>
+            <tr>
+              <td class="rank-cell">10</td><td class="model-name">FLUX.2-Klein-9B</td>
+              <td class="score-main">59.28</td>
+              <td>82.84</td><td>39.63</td>
+              <td>88.91</td><td>31.10</td>
+              <td>80.47</td><td>84.11</td>
+              <td>83.86</td><td>45.04</td>
+              <td>51.34</td>
+              <td>51.37</td><td>37.23</td>
+            </tr>
+            <tr>
+              <td class="rank-cell">13</td><td class="model-name">SD-3.5-Large</td>
+              <td class="score-main">43.36</td>
+              <td>52.39</td><td>7.40</td>
+              <td>41.20</td><td>19.86</td>
+              <td>47.48</td><td>42.44</td>
+              <td>59.53</td><td>43.76</td>
+              <td>58.06</td>
+              <td>64.30</td><td>25.70</td>
+            </tr>
+            <tr>
+              <td class="rank-cell">16</td><td class="model-name">FLUX.1-Kontext-dev</td>
+              <td class="score-main">31.78</td>
+              <td>37.21</td><td>9.55</td>
+              <td>36.20</td><td>21.25</td>
+              <td>40.15</td><td>29.01</td>
+              <td>39.80</td><td>33.69</td>
+              <td>39.25</td>
+              <td>51.98</td><td>3.96</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════ TAB 4: TEXT EDITING ════════════════ -->
+  <div id="tab-editing" class="tab-content">
+
+    <div class="info-box">
+      <strong>Text Editing Tasks</strong>: Modify specific textual content within images while preserving other elements unchanged.
+      Evaluated by 1 − LPIPS (perceptual similarity, ↑ better) and Accuracy Rate (AR, ↑ better) per text category.
+      <strong>Note</strong>: Models marked with * currently support only image editing tasks.
+    </div>
+
+    <div class="table-card">
+      <div class="table-scroll">
+        <table id="editing-table" data-glow-col="2">
+          <thead>
+            <tr>
+              <th rowspan="2">#</th>
+              <th rowspan="2" style="text-align:left;min-width:165px">Model</th>
+              <th rowspan="2" class="th-group"><span class="ocrgenscore-header">OCRGenScore</span><sub style="color:#c084fc">Edit</sub> ↑</th>
+              <th colspan="2" style="background:#0b3028;text-align:center;font-size:11px;border-left:1px solid rgba(255,255,255,0.2)">Modern Doc ↑</th>
+              <th colspan="2" style="background:#0b3028;text-align:center;font-size:11px;border-left:1px solid rgba(255,255,255,0.2)">Historical Doc ↑</th>
+              <th colspan="2" style="background:#0b3028;text-align:center;font-size:11px;border-left:1px solid rgba(255,255,255,0.2)">Handwriting ↑</th>
+              <th colspan="2" style="background:#0b3028;text-align:center;font-size:11px;border-left:1px solid rgba(255,255,255,0.2)">Scene Text ↑</th>
+              <th colspan="2" style="background:#0b3028;text-align:center;font-size:11px;border-left:1px solid rgba(255,255,255,0.2)">Artistic Text ↑</th>
+              <th colspan="2" style="background:#0b3028;text-align:center;font-size:11px;border-left:1px solid rgba(255,255,255,0.2)">Slide ↑</th>
+              <th colspan="2" style="background:#0b3028;text-align:center;font-size:11px;border-left:1px solid rgba(255,255,255,0.2)">Poster ↑</th>
+            </tr>
+            <tr>
+              <th class="th-task" style="border-left:1px solid rgba(255,255,255,0.15)">1-LPIPS</th><th class="th-task">AR</th>
+              <th class="th-task" style="border-left:1px solid rgba(255,255,255,0.15)">1-LPIPS</th><th class="th-task">AR</th>
+              <th class="th-task" style="border-left:1px solid rgba(255,255,255,0.15)">1-LPIPS</th><th class="th-task">AR</th>
+              <th class="th-task" style="border-left:1px solid rgba(255,255,255,0.15)">1-LPIPS</th><th class="th-task">AR</th>
+              <th class="th-task" style="border-left:1px solid rgba(255,255,255,0.15)">1-LPIPS</th><th class="th-task">AR</th>
+              <th class="th-task" style="border-left:1px solid rgba(255,255,255,0.15)">1-LPIPS</th><th class="th-task">AR</th>
+              <th class="th-task" style="border-left:1px solid rgba(255,255,255,0.15)">1-LPIPS</th><th class="th-task">AR</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="group-header"><td colspan="17">Closed-Source Models</td></tr>
+            <tr>
+              <td class="rank-cell rank-2">2</td><td class="model-name">Nano Banana Pro</td>
+              <td class="score-main score-second">80.30</td>
+              <td>88.15</td><td class="score-second">80.28</td>
+              <td>74.66</td><td>38.87</td>
+              <td>77.42</td><td>58.21</td>
+              <td>92.03</td><td>73.36</td>
+              <td>92.15</td><td class="score-second">94.00</td>
+              <td>85.92</td><td class="score-second">96.90</td>
+              <td>93.50</td><td>79.80</td>
+            </tr>
+            <tr>
+              <td class="rank-cell">6</td><td class="model-name">Seedream 4.5</td>
+              <td class="score-main">56.74</td>
+              <td>65.14</td><td>41.20</td>
+              <td>60.95</td><td>13.77</td>
+              <td>53.77</td><td>24.48</td>
+              <td>68.67</td><td>45.31</td>
+              <td>67.15</td><td class="score-best">100.00</td>
+              <td>64.06</td><td>64.31</td>
+              <td>59.84</td><td>69.71</td>
+            </tr>
+            <tr>
+              <td class="rank-cell">7</td><td class="model-name">GPT Image 1.5</td>
+              <td class="score-main">52.32</td>
+              <td>55.66</td><td>28.30</td>
+              <td>48.73</td><td>8.80</td>
+              <td>54.08</td><td>31.89</td>
+              <td>59.92</td><td>45.78</td>
+              <td>67.45</td><td>65.31</td>
+              <td>60.28</td><td>67.98</td>
+              <td>55.36</td><td>44.42</td>
+            </tr>
+
+            <tr class="group-header"><td colspan="17">Open-Source · Unified Understanding &amp; Generation</td></tr>
+            <tr>
+              <td class="rank-cell">8</td><td class="model-name">BAGEL</td>
+              <td class="score-main">50.57</td>
+              <td>87.58</td><td>9.00</td>
+              <td class="score-second">79.45</td><td>2.50</td>
+              <td>86.27</td><td>15.95</td>
+              <td>90.55</td><td>20.66</td>
+              <td>87.63</td><td>17.63</td>
+              <td>83.69</td><td>20.09</td>
+              <td>92.57</td><td>15.28</td>
+            </tr>
+            <tr>
+              <td class="rank-cell">11</td><td class="model-name">OmniGen2</td>
+              <td class="score-main">39.86</td>
+              <td>61.76</td><td>9.32</td>
+              <td>68.48</td><td>3.66</td>
+              <td>62.11</td><td>11.90</td>
+              <td>73.55</td><td>10.21</td>
+              <td>74.24</td><td>24.66</td>
+              <td>49.88</td><td>24.11</td>
+              <td>51.50</td><td>6.13</td>
+            </tr>
+            <tr>
+              <td class="rank-cell">13</td><td class="model-name">InternVL-U</td>
+              <td class="score-main">35.03</td>
+              <td>51.20</td><td>5.59</td>
+              <td>43.98</td><td>10.75</td>
+              <td>58.54</td><td>15.32</td>
+              <td>58.50</td><td>21.29</td>
+              <td>58.39</td><td>45.15</td>
+              <td>44.29</td><td>13.72</td>
+              <td>49.59</td><td>14.15</td>
+            </tr>
+            <tr>
+              <td class="rank-cell">14</td><td class="model-name">Janus-4o</td>
+              <td class="score-main">28.09</td>
+              <td>43.82</td><td>2.42</td>
+              <td>32.06</td><td>1.92</td>
+              <td>44.59</td><td>3.89</td>
+              <td>47.29</td><td>6.24</td>
+              <td>52.61</td><td>27.68</td>
+              <td>56.12</td><td>2.68</td>
+              <td>43.76</td><td>0.82</td>
+            </tr>
+            <tr>
+              <td class="rank-cell">16</td><td class="model-name">ILLUME+</td>
+              <td class="score-main">22.68</td>
+              <td>39.25</td><td>1.25</td>
+              <td>41.83</td><td>1.19</td>
+              <td>41.46</td><td>3.89</td>
+              <td>61.53</td><td>3.46</td>
+              <td>48.29</td><td>0.62</td>
+              <td>63.53</td><td>3.78</td>
+              <td>42.74</td><td>0.69</td>
+            </tr>
+
+            <tr class="group-header"><td colspan="17">Open-Source · Specialized Generation</td></tr>
+            <tr>
+              <td class="rank-cell rank-1">1</td><td class="model-name">FireRed-Image-Edit-v1.1 *</td>
+              <td class="score-main score-best">81.27</td>
+              <td class="score-best">89.75</td><td>60.08</td>
+              <td class="score-best">80.46</td><td>44.70</td>
+              <td class="score-best">90.68</td><td class="score-second">76.18</td>
+              <td class="score-best">91.97</td><td>66.97</td>
+              <td>21.18</td><td>93.26</td>
+              <td class="score-best">88.02</td><td class="score-best">98.66</td>
+              <td class="score-best">96.19</td><td>79.47</td>
+            </tr>
+            <tr>
+              <td class="rank-cell rank-3">3</td><td class="model-name">LongCat-Image</td>
+              <td class="score-main">70.97</td>
+              <td>84.35</td><td>29.83</td>
+              <td>76.75</td><td>32.06</td>
+              <td class="score-second">86.55</td><td>52.73</td>
+              <td>87.56</td><td>54.12</td>
+              <td>83.62</td><td>91.95</td>
+              <td>83.81</td><td>64.72</td>
+              <td>92.98</td><td>72.66</td>
+            </tr>
+            <tr>
+              <td class="rank-cell">4</td><td class="model-name">FLUX.2-dev</td>
+              <td class="score-main">64.14</td>
+              <td>83.53</td><td>34.86</td>
+              <td>74.61</td><td>13.08</td>
+              <td>80.93</td><td>31.32</td>
+              <td class="score-second">87.57</td><td>48.38</td>
+              <td class="score-second">87.57</td><td>89.77</td>
+              <td>84.51</td><td>56.67</td>
+              <td>91.28</td><td>33.86</td>
+            </tr>
+            <tr>
+              <td class="rank-cell">5</td><td class="model-name">Qwen-Image</td>
+              <td class="score-main">57.68</td>
+              <td>67.63</td><td>33.60</td>
+              <td>63.37</td><td>21.50</td>
+              <td>51.40</td><td>25.06</td>
+              <td>72.08</td><td>58.58</td>
+              <td class="score-second">85.95</td><td>72.33</td>
+              <td>59.48</td><td>27.65</td>
+              <td>84.44</td><td class="score-best">98.93</td>
+            </tr>
+            <tr>
+              <td class="rank-cell">9</td><td class="model-name">FLUX.2-Klein-9B</td>
+              <td class="score-main">48.32</td>
+              <td>76.15</td><td>16.35</td>
+              <td>67.51</td><td>5.09</td>
+              <td>59.92</td><td>15.77</td>
+              <td>82.84</td><td>24.61</td>
+              <td>67.98</td><td>47.48</td>
+              <td>75.98</td><td>33.96</td>
+              <td>79.19</td><td>16.77</td>
+            </tr>
+            <tr>
+              <td class="rank-cell">10</td><td class="model-name">GLM-Image</td>
+              <td class="score-main">46.72</td>
+              <td>41.42</td><td>14.42</td>
+              <td>54.20</td><td>14.42</td>
+              <td>65.15</td><td>44.39</td>
+              <td>59.40</td><td>77.81</td>
+              <td>67.98</td><td>47.48</td>
+              <td>78.31</td><td>84.08</td>
+              <td>58.31</td><td>74.23</td>
+            </tr>
+            <tr>
+              <td class="rank-cell">12</td><td class="model-name">FLUX.1-Kontext-dev</td>
+              <td class="score-main">35.48</td>
+              <td>51.49</td><td>6.82</td>
+              <td>45.34</td><td>10.75</td>
+              <td>54.66</td><td>15.52</td>
+              <td>62.04</td><td>11.27</td>
+              <td>62.81</td><td>20.97</td>
+              <td>57.29</td><td>16.53</td>
+              <td>52.86</td><td>5.39</td>
+            </tr>
+            <tr>
+              <td class="rank-cell">15</td><td class="model-name">SD-3.5-Large</td>
+              <td class="score-main">26.74</td>
+              <td>35.32</td><td>4.45</td>
+              <td>37.15</td><td>0.38</td>
+              <td>43.19</td><td>5.87</td>
+              <td>42.86</td><td>5.56</td>
+              <td>64.87</td><td>18.46</td>
+              <td>59.60</td><td>0.00</td>
+              <td>51.50</td><td>6.13</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<!-- ══════════════════════════════ EXAMPLE ══════════════════════════════ -->
+<div class="example-section">
+  <h2>Benchmark Overview — Task &amp; Data Examples</h2>
+  <img src="asset/example.png" alt="OCRGenBench examples" class="example-img">
+  <p class="example-desc">
+    OCRGenBench is the most comprehensive benchmark to date for evaluating the OCR generative capabilities of generative models.
+    It pioneers in the unification of T2I generation, text editing, and OCR-related image-to-image translation to universally reflect
+    a model's visual text synthesis abilities, i.e., <em>OCR generative capabilities</em>. The benchmark covers <strong>5 common text
+    categories</strong> and <strong>33 OCR generative tasks</strong>, including <strong>1,060 challenging, human-annotated samples</strong>
+    with dense text, varied layouts, multiple aspect ratios, and bilingual content. We also design a unified metric
+    <strong>OCRGenScore</strong>, assessing text accuracy, instruction following, visual quality, and structural consistency in visual
+    text synthesis.
+  </p>
+</div>
+
+<!-- ══════════════════════════════ SUBMIT ══════════════════════════════ -->
+<div class="submit-section">
+  <h2>Submit Your Model Results</h2>
+  <p class="submit-subtitle">Evaluated your model on OCRGenBench? Upload your results Excel to request a leaderboard entry.</p>
+
+  <div class="submit-card">
+    <div class="submit-tabs">
+      <button class="submit-tab active" data-task="all" onclick="switchSubmitTab(this,'all')">All Four Scenarios<span class="tab-badge">Full</span></button>
+      <button class="submit-tab" data-task="overall" onclick="switchSubmitTab(this,'overall')">By Task</button>
+      <button class="submit-tab" data-task="category" onclick="switchSubmitTab(this,'category')">By Category</button>
+      <button class="submit-tab" data-task="t2i" onclick="switchSubmitTab(this,'t2i')">T2I Gen.</button>
+      <button class="submit-tab" data-task="editing" onclick="switchSubmitTab(this,'editing')">Text Editing</button>
+    </div>
+    <div class="submit-body">
+
+      <!-- Upload zone -->
+      <div class="upload-zone" id="upload-zone"
+           ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
+        <input type="file" id="file-input" accept=".xlsx,.xls,.csv" onchange="handleFileSelect(this.files[0])">
+        <span class="upload-icon">📊</span>
+        <div class="upload-label">Drag &amp; drop your Excel / CSV here</div>
+        <div class="upload-hint">
+          or <a href="#" onclick="document.getElementById('file-input').click();return false;">browse file</a>
+          &nbsp;·&nbsp;
+          <a href="#" onclick="downloadTemplate();return false;" title="Download Excel template">Download template</a>
+        </div>
+      </div>
+
+      <!-- File info bar -->
+      <div class="file-info" id="file-info">
+        <span>📄</span>
+        <span class="file-info-name" id="file-info-name">—</span>
+        <span class="file-info-size" id="file-info-size"></span>
+        <button class="btn-clear-file" onclick="clearFile()" title="Remove file">✕</button>
+      </div>
+
+      <!-- Parse error -->
+      <div class="preview-error" id="preview-error"></div>
+
+      <!-- Preview table -->
+      <div class="preview-wrap" id="preview-wrap">
+        <h4>Preview — first 5 rows</h4>
+        <div class="preview-scroll" id="preview-scroll"></div>
+      </div>
+
+      <!-- Actions -->
+      <div class="submit-actions">
+        <button class="btn-submit" id="btn-submit" disabled title="Submission portal opening soon — stay tuned!">
+          Submit via GitHub Issue ↗ &nbsp;<span class="coming-soon-badge">Coming Soon</span>
+        </button>
+        <a href="#" class="btn-template" onclick="downloadTemplate();return false;">⬇ Template</a>
+      </div>
+      <p class="submit-note">
+        Download the template, fill in your model's scores, then upload to preview the format.
+        The submission portal will open soon — follow the
+        <a href="https://github.com/NiceRingNode/Awesome-Generative-Models-for-OCR">GitHub repo</a>
+        for updates.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ FOOTER ══════════════════════════════ -->
+<div class="container">
+  <div class="bibtex-box">
+    <div class="bibtex-header">
+      <span class="bibtex-title">BibTeX</span>
+      <button class="copy-btn" onclick="copyBibTeX(this)">Copy</button>
+    </div>
+    <pre class="bibtex-code">@article{zhang2025ocrgenbench,
+  title     = {{OCRGenBench: A Comprehensive Benchmark for Evaluating OCR Generative Capabilities}},
+  author    = {Zhang, Peirong and Xu, Haowei and Zhang, Jiaxin and Zheng, Xuhan and Xu, Guitao and Zhang, Yuyi and Liu, Junle and Yang, Zhenhua and Zhou, Wei and Jin, Lianwen},
+  journal   = {arXiv preprint arXiv:2507.15085},
+  year      = {2025},
+}</pre>
+  </div>
+</div>
+<div class="footer">
+  <p>
+    <a href="https://arxiv.org/abs/2507.15085">arXiv</a> &nbsp;|&nbsp;
+    <a href="https://github.com/NiceRingNode/Awesome-Generative-Models-for-OCR">GitHub</a>
+  </p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script>
+// ── Submit section ────────────────────────────────────────────────────
+const SUBMIT_SCHEMAS = {
+  all: {
+    label: 'All Tasks',
+    cols: [
+      'Model','Date','Type','Source','Params','OCRGenScore',
+      // T2I
+      'OCRGenScore_T2I',
+      'T2I_HistDoc_VIE','T2I_HistDoc_AR',
+      'T2I_Handwriting_VIE','T2I_Handwriting_AR',
+      'T2I_SceneText_VIE','T2I_SceneText_AR',
+      'T2I_ArtisticText_VIE','T2I_ArtisticText_AR',
+      'T2I_Slide_VIE','T2I_Poster_VIE','T2I_Poster_AR',
+      // Editing
+      'OCRGenScore_Edit',
+      'Edit_ModernDoc_1LPIPS','Edit_ModernDoc_AR',
+      'Edit_HistDoc_1LPIPS','Edit_HistDoc_AR',
+      'Edit_Handwriting_1LPIPS','Edit_Handwriting_AR',
+      'Edit_SceneText_1LPIPS','Edit_SceneText_AR',
+      'Edit_ArtisticText_1LPIPS','Edit_ArtisticText_AR',
+      'Edit_Slide_1LPIPS','Edit_Slide_AR',
+      'Edit_Poster_1LPIPS','Edit_Poster_AR',
+      // I2I Translation
+      'Dewarping_DD','Deshadow','Deblur'
+    ]
+  },
+  overall: {
+    label: 'Overall Leaderboard',
+    cols: ['Model','Date','Type','Source','Params','OCRGenScore','T2I_VIE','T2I_AR','Edit_1LPIPS','Edit_AR','Dewarping_DD','Deshadow','Deblur']
+  },
+  category: {
+    label: 'By Text Category',
+    cols: ['Model','OCRGenScore','Doc_Modern','Doc_Historical','Handwriting','SceneText','ArtisticText','Slide','Poster','LayoutAware']
+  },
+  t2i: {
+    label: 'T2I Generation',
+    cols: ['Model','OCRGenScore_T2I','HistDoc_VIE','HistDoc_AR','Handwriting_VIE','Handwriting_AR','SceneText_VIE','SceneText_AR','ArtisticText_VIE','ArtisticText_AR','Slide_VIE','Poster_VIE','Poster_AR']
+  },
+  editing: {
+    label: 'Text Editing',
+    cols: ['Model','OCRGenScore_Edit','ModernDoc_1LPIPS','ModernDoc_AR','HistDoc_1LPIPS','HistDoc_AR','Handwriting_1LPIPS','Handwriting_AR','SceneText_1LPIPS','SceneText_AR','ArtisticText_1LPIPS','ArtisticText_AR','Slide_1LPIPS','Slide_AR','Poster_1LPIPS','Poster_AR']
+  }
+};
+
+let currentTask = 'all';
+let parsedData  = null;  // { headers: [], rows: [] }
+
+function switchSubmitTab(btn, task) {
+  document.querySelectorAll('.submit-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  currentTask = task;
+  clearFile();
+}
+
+function handleDragOver(e) { e.preventDefault(); document.getElementById('upload-zone').classList.add('drag-over'); }
+function handleDragLeave(e) { document.getElementById('upload-zone').classList.remove('drag-over'); }
+function handleDrop(e) {
+  e.preventDefault();
+  document.getElementById('upload-zone').classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (file) handleFileSelect(file);
+}
+
+function handleFileSelect(file) {
+  if (!file) return;
+  showError('');
+  document.getElementById('file-info-name').textContent = file.name;
+  document.getElementById('file-info-size').textContent = formatBytes(file.size);
+  document.getElementById('file-info').classList.add('show');
+
+  const reader = new FileReader();
+  reader.onload = e => parseWorkbook(e.target.result, file.name);
+  if (file.name.endsWith('.csv')) reader.readAsText(file);
+  else reader.readAsArrayBuffer(file);
+}
+
+function parseWorkbook(data, name) {
+  try {
+    const wb = XLSX.read(data, { type: name.endsWith('.csv') ? 'string' : 'array' });
+    const ws  = wb.Sheets[wb.SheetNames[0]];
+    const rows = XLSX.utils.sheet_to_json(ws, { header: 1, defval: '' });
+    if (!rows || rows.length < 2) { showError('The file appears to be empty or has only one row.'); return; }
+
+    const headers = rows[0].map(String);
+    const expectedCols = SUBMIT_SCHEMAS[currentTask].cols;
+
+    // Validate required columns
+    const missing = expectedCols.filter(c => !headers.includes(c));
+    if (missing.length > 0) {
+      showError('Missing required columns: ' + missing.join(', ') + '. Please use the provided template.');
+      return;
+    }
+
+    parsedData = { headers, rows: rows.slice(1) };
+    renderPreview(headers, rows.slice(1, 6));
+    const btn = document.getElementById('btn-submit');
+    if (!btn.disabled) btn.classList.add('ready');
+  } catch(err) {
+    showError('Could not parse file: ' + err.message);
+  }
+}
+
+function renderPreview(headers, rows) {
+  const wrap = document.getElementById('preview-wrap');
+  const scroll = document.getElementById('preview-scroll');
+  const ths = headers.map(h => `<th>${h}</th>`).join('');
+  const trs = rows.map(r => '<tr>' + r.map(c => `<td>${c}</td>`).join('') + '</tr>').join('');
+  scroll.innerHTML = `<table><thead><tr>${ths}</tr></thead><tbody>${trs}</tbody></table>`;
+  wrap.classList.add('show');
+}
+
+function submitResults() {
+  if (!parsedData) return;
+  const taskLabel = SUBMIT_SCHEMAS[currentTask].label;
+  const modelName = String(parsedData.rows[0]?.[0] || 'New Model').trim();
+  const csvLines = [
+    parsedData.headers.join(','),
+    ...parsedData.rows.map(r => r.map(c => '"' + String(c).replace(/"/g, '""') + '"').join(','))
+  ];
+
+  const issueBody =
+    `## 📊 Model Submission — ${taskLabel}\n\n` +
+    `| Field | Value |\n` +
+    `|-------|-------|\n` +
+    `| **Model** | ${modelName} |\n` +
+    `| **Task** | ${taskLabel} |\n` +
+    `| **Date** | ${new Date().toISOString().slice(0, 10)} |\n\n` +
+    `### Results (CSV)\n` +
+    `\`\`\`csv\n${csvLines.join('\n')}\n\`\`\`\n\n` +
+    `### Additional Information\n` +
+    `<!-- Paper link, model checkpoint, or any notes about your model -->\n\n` +
+    `---\n` +
+    `*Submitted via [OCRGenBench Leaderboard](https://NiceRingNode.github.io/Awesome-Generative-Models-for-OCR/)*`;
+
+  const title = encodeURIComponent(`[Submission] ${modelName} — ${taskLabel}`);
+  const body  = encodeURIComponent(issueBody);
+  const url   = `https://github.com/NiceRingNode/Awesome-Generative-Models-for-OCR/issues/new?title=${title}&body=${body}&labels=submission`;
+
+  window.open(url, '_blank');
+}
+
+function downloadTemplate() {
+  const cols = SUBMIT_SCHEMAS[currentTask].cols;
+  const ws  = XLSX.utils.aoa_to_sheet([cols, cols.map((c,i) => i === 0 ? 'YourModelName' : '')]);
+  const wb  = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Results');
+  XLSX.writeFile(wb, `OCRGenBench_${SUBMIT_SCHEMAS[currentTask].label.replace(/\s+/g,'_')}_template.xlsx`);
+}
+
+function clearFile() {
+  parsedData = null;
+  document.getElementById('file-input').value = '';
+  document.getElementById('file-info').classList.remove('show');
+  document.getElementById('preview-wrap').classList.remove('show');
+  document.getElementById('btn-submit').classList.remove('ready');
+  showError('');
+}
+
+function showError(msg) {
+  const el = document.getElementById('preview-error');
+  el.textContent = msg;
+  msg ? el.classList.add('show') : el.classList.remove('show');
+}
+
+function formatBytes(n) {
+  if (n < 1024) return n + ' B';
+  if (n < 1024*1024) return (n/1024).toFixed(1) + ' KB';
+  return (n/1024/1024).toFixed(1) + ' MB';
+}
+
+// ── Column glow overlays (OCRBench v2 style) ─────────────────────────
+const glowUpdaters = [];
+function setupGlow() {
+  document.querySelectorAll('table[data-glow-col]').forEach(table => {
+    const colIdx = parseInt(table.dataset.glowCol);
+    const scroll = table.closest('.table-scroll');
+    if (!scroll) return;
+    // Only set up once per table
+    if (scroll.querySelector('.col-glow')) return;
+
+    const overlay = document.createElement('div');
+    overlay.className = 'col-glow';
+    scroll.appendChild(overlay);
+
+    function updatePos() {
+      let cell = null;
+      for (const row of table.querySelectorAll('tbody tr:not(.group-header)')) {
+        if (row.cells[colIdx]) { cell = row.cells[colIdx]; break; }
+      }
+      if (!cell) {
+        const ths = table.querySelectorAll('thead tr:first-child th');
+        cell = ths[colIdx] || null;
+      }
+      if (!cell) return;
+      const scrollRect = scroll.getBoundingClientRect();
+      const cellRect  = cell.getBoundingClientRect();
+      overlay.style.left  = (cellRect.left - scrollRect.left + scroll.scrollLeft) + 'px';
+      overlay.style.width = cellRect.width + 'px';
+    }
+
+    glowUpdaters.push(updatePos);
+    requestAnimationFrame(updatePos);
+    window.addEventListener('resize', updatePos);
+    scroll.addEventListener('scroll', updatePos);
+  });
+}
+function refreshGlow() { glowUpdaters.forEach(fn => requestAnimationFrame(fn)); }
+document.addEventListener('DOMContentLoaded', setupGlow);
+
+// ── BibTeX copy ───────────────────────────────────────────────────────
+function copyBibTeX(btn) {
+  const text = document.querySelector('.bibtex-code').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy', 2000);
+  });
+}
+
+// ── Tab switching ──────────────────────────────────────────────────────
+function switchTab(name) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+  // Re-measure glow positions after tab becomes visible
+  requestAnimationFrame(() => { setupGlow(); refreshGlow(); });
+}
+
+// ── Source / Type filters (Tab 1) ─────────────────────────────────────
+const filters = { source: 'all', type: 'all' };
+
+function setFilter(key, value, btn) {
+  filters[key] = value;
+  // update button active state within same group
+  btn.closest('.filter-group').querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilters();
+}
+
+function applyFilters() {
+  const rows = document.querySelectorAll('#overall-table tbody tr:not(.group-header)');
+  rows.forEach(row => {
+    const src = row.dataset.source;
+    const typ = row.dataset.type;
+    const srcOk = filters.source === 'all' || src === filters.source;
+    const typOk = filters.type === 'all' || typ === filters.type;
+    row.classList.toggle('hidden', !(srcOk && typOk));
+  });
+}
+
+// ── Source filter (Tab 2) ─────────────────────────────────────────────
+const filters2 = { source: 'all' };
+
+function setFilter2(key, value, btn) {
+  filters2[key] = value;
+  btn.closest('.filter-group').querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilters2();
+}
+
+function applyFilters2() {
+  const rows = document.querySelectorAll('#category-table tbody tr:not(.group-header)');
+  rows.forEach(row => {
+    const src = row.dataset.source2;
+    const ok = filters2.source === 'all' || src === filters2.source;
+    row.classList.toggle('hidden', !ok);
+  });
+}
+
+// ── Table sorting ─────────────────────────────────────────────────────
+const sortState = {};
+
+function sortTable(tableId, colIdx) {
+  const table = document.getElementById(tableId);
+  const tbody = table.querySelector('tbody');
+  const key = tableId + '-' + colIdx;
+
+  // cycle: none → desc → asc
+  const cur = sortState[key] || 'none';
+  const dir = cur === 'none' ? 'desc' : cur === 'desc' ? 'asc' : 'none';
+  sortState[key] = dir;
+
+  // update sort icons
+  table.querySelectorAll('thead th').forEach((th, i) => {
+    th.classList.remove('sorted');
+    const icon = th.querySelector('.sort-icon');
+    if (icon) icon.textContent = '↕';
+  });
+
+  if (dir === 'none') return;
+
+  const th = table.querySelectorAll('thead th')[colIdx];
+  th.classList.add('sorted');
+  const icon = th.querySelector('.sort-icon');
+  if (icon) icon.textContent = dir === 'desc' ? '↓' : '↑';
+
+  // collect all data rows (skip group headers)
+  const dataRows = Array.from(tbody.querySelectorAll('tr:not(.group-header)'));
+  const groupHeaders = Array.from(tbody.querySelectorAll('tr.group-header'));
+
+  dataRows.sort((a, b) => {
+    const aCell = a.cells[colIdx];
+    const bCell = b.cells[colIdx];
+    if (!aCell || !bCell) return 0;
+    const aVal = parseFloat(aCell.textContent.trim().replace('–','')) || -Infinity;
+    const bVal = parseFloat(bCell.textContent.trim().replace('–','')) || -Infinity;
+    return dir === 'desc' ? bVal - aVal : aVal - bVal;
+  });
+
+  // Remove group headers then re-insert rows without groups when sorting
+  groupHeaders.forEach(h => h.remove());
+  dataRows.forEach(r => tbody.appendChild(r));
+}
+</script>
+
+</body>
+</html>

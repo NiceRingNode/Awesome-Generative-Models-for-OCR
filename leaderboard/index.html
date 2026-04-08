@@ -3177,6 +3177,8 @@
       <button class="submit-tab" data-task="category" onclick="switchSubmitTab(this,'category')">By Category</button>
       <button class="submit-tab" data-task="t2i" onclick="switchSubmitTab(this,'t2i')">T2I Gen.</button>
       <button class="submit-tab" data-task="editing" onclick="switchSubmitTab(this,'editing')">Text Editing</button>
+      <button class="submit-tab" data-task="zh" onclick="switchSubmitTab(this,'zh')">Chinese (ZH)</button>
+      <button class="submit-tab" data-task="en" onclick="switchSubmitTab(this,'en')">English (EN)</button>
     </div>
     <div class="submit-body">
 
@@ -3292,6 +3294,14 @@ const SUBMIT_SCHEMAS = {
   editing: {
     label: 'Text Editing',
     cols: ['Model','OCRGenScore_Edit','ModernDoc_1LPIPS','ModernDoc_AR','HistDoc_1LPIPS','HistDoc_AR','Handwriting_1LPIPS','Handwriting_AR','SceneText_1LPIPS','SceneText_AR','ArtisticText_1LPIPS','ArtisticText_AR','Slide_1LPIPS','Slide_AR','Poster_1LPIPS','Poster_AR']
+  },
+  zh: {
+    label: 'Chinese (ZH)',
+    cols: ['Model','Date','Type','Source','Params','OCRGenScore','T2I_VIE','T2I_AR','Edit_1LPIPS','Edit_AR','Dewarping_DD','Deshadow','Deblur']
+  },
+  en: {
+    label: 'English (EN)',
+    cols: ['Model','Date','Type','Source','Params','OCRGenScore','T2I_VIE','T2I_AR','Edit_1LPIPS','Edit_AR','Dewarping_DD','Deshadow','Deblur']
   }
 };
 

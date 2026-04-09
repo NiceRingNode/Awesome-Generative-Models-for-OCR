@@ -211,6 +211,8 @@ For questions or collaborations, please reach out to: eeprzhang@mail.scut.edu.cn
 
 ## <div align="center" id="acknowledgement">🌊 Acknowledgement</div> <!-- omit in toc -->
 
+We gratefully acknowledge the following open-source projects used for metric computation: [VIEScore](https://github.com/TIGER-AI-Lab/VIEScore) and [DocAligner-Distortion](https://github.com/ZZZHANG-jx/DocAligner-Distortion).
+
 Copyright 2025–2026, [Deep Learning and Vision Computing (DLVC) Lab](http://www.dlvc-lab.net), South China University of Technology.
 
 ## <div align="center" id="star-history">⭐ Star History</div> <!-- omit in toc -->

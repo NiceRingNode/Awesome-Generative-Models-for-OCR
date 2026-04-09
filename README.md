@@ -1,27 +1,3 @@
----
-license: other
-task_categories:
-- image-to-text
-- text-to-image
-- image-to-image
-language:
-- en
-- zh
-tags:
-- ocr
-- benchmark
-- document-understanding
-- multimodal
-- text-generation
-- visual-text-synthesis
-pretty_name: OCRGenBench
-size_categories:
-- 1K<n<10K
-extra_gated_prompt: "To access OCRGenBench, please submit an application form on our website. Access will be granted automatically upon submission.\n\n👉 [Apply for Dataset Access](http://121.41.49.212:8000)"
-extra_gated_fields:
-  I agree to use this dataset for non-commercial research purposes only: checkbox
----
-
 # <div align="center" id="ocrgenbench">OCRGenBench: A Comprehensive Benchmark for Evaluating OCR Generative Capabilities</div>
 
 <div align="center">

@@ -3,7 +3,7 @@
 <div align="center">
   <a href="http://dlvc-lab.net/lianwen/"><img alt="SCUT DLVC Lab" src="https://img.shields.io/badge/SCUT-DLVC_Lab-A85882?logo=Academia&logoColor=white"></a>
   <a href="https://arxiv.org/abs/2507.15085"><img alt="arXiv" src="https://img.shields.io/badge/arXiv-2507.15085-CE0000?logo=arXiv&logoColor=white&labelColor=gray"></a>
-  <a href="https://huggingface.co/PeirongZhang/OCRGenBench"><img alt="HuggingFace Paper" src="https://img.shields.io/badge/🤗_HuggingFace-Dataset-FFBF00?labelColor=gray"></a>
+  <a href="https://huggingface.co/datasets/PeirongZhang/OCRGenBench"><img alt="HuggingFace Paper" src="https://img.shields.io/badge/🤗_HuggingFace-Dataset-FFBF00?labelColor=gray"></a>
   <a href="https://niceringnode.github.io/Awesome-Generative-Models-for-OCR/leaderboard/"><img alt="Leaderboard" src="https://img.shields.io/badge/Leaderboard-Live-4C9AFF?logo=readthedocs&logoColor=white&labelColor=gray"></a>
   <a href="./LICENSE"><img alt="License" src="https://img.shields.io/badge/License-Apache_2.0-008844?logo=apache&logoColor=white&labelColor=gray"></a>
 <p></p>

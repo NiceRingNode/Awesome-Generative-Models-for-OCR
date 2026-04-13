@@ -25,7 +25,7 @@
 ### 📌 Pinned
 
 - 🚀 **[April 2026]** [Dataset](https://huggingface.co/datasets/PeirongZhang/OCRGenBench) and evaluation scripts are published.
-- 
+
 - 🚀 **[March 2026]** Our **online leaderboard** is now live: [OCRGenBench Leaderboard](https://niceringnode.github.io/Awesome-Generative-Models-for-OCR/leaderboard/).
 
 - 🎉 **[March 2026]** We propose **OCRGenBench**, a comprehensive benchmark for evaluating multi-dimensional OCR generative capabilities (visual text synthesis capabilities).
